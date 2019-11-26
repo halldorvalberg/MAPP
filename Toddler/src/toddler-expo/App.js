@@ -16,8 +16,8 @@ export default class App extends React.Component {
         const {boards} = this.state;
         return(
             <View style={styles.container}>
-                { boards.map(({ id, name, thumbnailPhoto}) => <Viewable_Boards  key={ id } src = {thumbnailPhoto} name = { name } id = {id}/>) }
-        	</View>
+                <Viewable_Boards/>
+            </View>
         );
     }
 }
