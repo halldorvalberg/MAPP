@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import Viewable_Boards from './components/board';
-
-const data = require('./data/data.json');
+import data from './data/data.json'
 
 export default class App extends React.Component {
     state = {
@@ -13,11 +12,12 @@ export default class App extends React.Component {
         ]
     }
 
-    render () {
+    render() {
+        const {boards} = this.state;
         return(
-            <View style={styles.container}> 
-            <Text> Something </Text>
-            </View>
+            <View style={styles.container}>
+                { boards.map(({ id, name, thumbnailPhoto}) => <Viewable_Boards  key={ id } src = {thumbnailPhoto} name = { name } id = {id}/>) }
+        	</View>
         );
     }
 }
