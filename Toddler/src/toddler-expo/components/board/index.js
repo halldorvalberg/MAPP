@@ -19,33 +19,12 @@ class Viewable_Boards extends React.Component {
     }
 }
 
-// class View_Board extends React.Component {
-//     state = {
-//         board_lists: DATA.lists
-//     }
+//The following class recieves a board and it's main function is to render that board.
 
-//     get_current_id = () => {
-//         const {board_lists} = this.state.board_lists.filter(list => list.name === this.props.name)
-//         console.log(current_id)
-//         return board_lists.id
-//     }
-
-//     render() {
-//         const current_id = this.get_current_id()
-//         const list = this.state.board_lists.filter(list => list.BoardId === current_id)
-//         const {name, src} = this.props;
-//         return(
-//             <View>
-//                 <Image source={{uri: src}} style={{height: 100, width: 100}} />
-//                 <Text>
-//                     Board: {name}
-//                 </Text>
-//                 {list.map(({id, name, color}) => <View_List key={id} name={name} color={color}/>)}
-//             </View>
-//         )
-//     }
-// }
-
+// TO - DO
+// Make it so that if the board element is tapped, it renders the lists within
+// Move component to its own file 
+// Create a style for this component that both looks goods and is easy to understand
 class View_Board extends React.Component {
     constructor(props) {
         super(props);
@@ -71,6 +50,12 @@ class View_Board extends React.Component {
     }
 }
 
+//The following class receives a list and it's main function is to render it
+
+//TO - DO 
+// make it so that if the list element is tapped, it renders the tasks within
+// Move component to its own file 
+// Create a style for this component that both looks goods and is easy to understand
 
 class View_List extends React.Component {
     constructor(props) {
@@ -95,6 +80,15 @@ class View_List extends React.Component {
     }
 }
 
+//The following class recives a task and it's main function is to render it
+
+// TO - DO
+// add functions that are connected to the element
+//      -Move task
+//      -Remove Task
+// Move component to its own file 
+// Create a style for this component that both looks goods and is easy to understand
+
 class View_Task extends React.Component {
     constructor(props) {
         super(props)
@@ -113,26 +107,5 @@ class View_Task extends React.Component {
         ) 
     }
 }
-
-
-// class View_Task extends React.Component {
-//     render() {
-//         const {name, description, isFinished} = this.props;
-//         return(
-//             <View>
-//                 <Text>
-//                     Task name: {name}
-//                 </Text>
-//                 <Text>
-//                     Task description: {description}
-//                 </Text>
-//                 <Text>
-//                     is Task finished?: {isFinished.toString()}
-//                 </Text>
-//             </View>
-//         )
-//     }
-// }
-
 
 export default Viewable_Boards; 
