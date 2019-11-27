@@ -1,8 +1,7 @@
 import React from 'react';
-import {View} from 'react-native'
+import {View, ScrollView} from 'react-native'
 import View_Board from '../../components/board';
 import styles from '../../styles/style'
-
 import data from '../../data/data'
 
 class Home extends React.Component {
@@ -29,9 +28,12 @@ class Home extends React.Component {
 
     render() {
         const {all_boards} = this.state;
+        const {navigate} = this.props.navigation;
         return(
-            <View>
-                {all_boards.map(({id, name, thumbnailPhoto}) => <)}
+            <View style={styles.container}>
+                <ScrollView>
+                        <View_Board all_boards={all_boards} navi={navigate}/>
+                </ScrollView>
             </View>
         )
     }
