@@ -16,9 +16,6 @@ export default class View_Board extends React.Component {
         this.state = {
             lists_on_board: DATA.lists.filter(list => list.boardId === props.id)
         }
-        console.log(this.props.id)
-        console.log('Lists on this board')
-        console.log(this.state.lists_on_board)
     }
 
     render() {

@@ -19,5 +19,3 @@ export default class Viewable_Boards extends React.Component {
         );
     }
 }
-
- 
