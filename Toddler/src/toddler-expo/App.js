@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React from 'react';
+import { View, StyleSheet,SafeAreaView, ScrollView } from 'react-native';
 import Viewable_Boards from './components/board';
-
-const data = require('./data/data.json');
+import data from './data/data.json';
+import styles from './styles/style.js';
 
 export default class App extends React.Component {
     state = {
@@ -13,27 +13,15 @@ export default class App extends React.Component {
         ]
     }
 
-    render () {
+    render() {
+        const {boards} = this.state;
         return(
-            <View style={styles.container}> 
-                <Text>{this.state.boards[0].name}</Text>
-                <Text>{this.state.boards[1].name}</Text>
-                <Text>{this.state.boards[2].name}</Text>
-            </View>
+            <SafeAreaView style={styles.container}>
+                <ScrollView >
+                    <Viewable_Boards/>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 }
 
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1, 
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        backgroundColor: 'lightskyblue',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth:1,
-    }
-});
