@@ -16,7 +16,9 @@ export default class App extends React.Component {
     render () {
         return(
             <View style={styles.container}> 
-            <Text> Something </Text>
+                <Text>{this.state.boards[0].name}</Text>
+                <Text>{this.state.boards[1].name}</Text>
+                <Text>{this.state.boards[2].name}</Text>
             </View>
         );
     }
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         backgroundColor: 'lightskyblue',
         alignItems: 'center',
-        justifyContent: 'center'
-
+        justifyContent: 'center',
+        borderWidth:1,
     }
 });
