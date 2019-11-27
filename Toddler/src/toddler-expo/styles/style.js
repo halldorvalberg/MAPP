@@ -3,12 +3,19 @@ import { View, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1, 
-        flexDirection: 'row',
+        flexDirection: 'column',
         flexWrap: 'wrap',
         backgroundColor: '#669966',
-        alignItems: 'center',
-        justifyContent: 'center',
         borderWidth:1,
+    },
+
+    navbar: {
+        width:'100%',
+        height:100,
+        backgroundColor:'white',
+        alignItems:'center',
+        paddingTop:55,
+
     },
 
     boards: {
@@ -16,19 +23,25 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        padding:'5%'
+        padding:'5%',
+        marginTop:50
     },
 
     board: {
         width: '45%',
         height: 250,
-        backgroundColor: 'rgba(255,255,255,0.3)',
-        padding: 5,
+        backgroundColor: 'rgba(255,255,255,1)',
+        marginTop: 20,
+        elevation:5
     },
 
     list: {
         padding:5,
-        marginBottom: 30,
+        marginBottom: 10,
+    },
+
+    task: {
+        marginBottom:5,
     }
 });
 

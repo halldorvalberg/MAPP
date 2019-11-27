@@ -1,5 +1,6 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
+import styles from '../../styles/style';
 
 //The following class recives a task and it's main function is to render it
 
@@ -18,11 +19,11 @@ export default class View_Task extends React.Component {
     render() {
         const{name, description, isFinished} = this.props;
         return(
-            <View>
+            <View style={styles.task}>
                 <Text>
                     Task name: "{name}"
-                    Task desc: "{description}"
-                    Task finished: {isFinished.toString()}
+                    {/*{Task desc: "{description}"
+                    Task finished: {isFinished.toString()}*/}
                 </Text>
             </View>
         ) 

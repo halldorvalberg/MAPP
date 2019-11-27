@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, Image, Button } from 'react-native';
+import { View, Text, Image, Button, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import DATA from '../../data/data.json'
 import View_List from './View_List'
+import styles from "../../styles/style.js"
 
 //The following class recieves a board and it's main function is to render that board.
 
@@ -23,15 +24,18 @@ export default class View_Board extends React.Component {
     render() {
         const { id, name, src } = this.props;
         return (
-                <View style={{flex:1, justifyContent:'center', }}>
-                    <Image source={{ uri: src }} style={{ height: 100, width: 100 }} />
-                    <Text>
-                        Board: {name}
-                    </Text>
-                
-                    {this.state.lists_on_board.map(({id, name, color}) => <View_List key={id} id={id} name={name} color={color} />)}
-
-                </View>
+                <SafeAreaView style={styles.board}>
+                    <ScrollView>
+                            <Image source={{ uri: src }} style={{ height: 100, width: 'auto' }} />
+                            <View style={{alignItems:'center', margin:5}}>
+                                <Text>
+                                    {name}
+                                </Text>
+                            </View>
+                        
+                            {this.state.lists_on_board.map(({id, name, color}) => <View_List key={id} id={id} name={name} color={color} />)}
+                    </ScrollView>
+                </SafeAreaView>
         )
     }
 }

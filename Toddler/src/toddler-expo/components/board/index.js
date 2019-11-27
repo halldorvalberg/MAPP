@@ -1,7 +1,8 @@
-import React from 'react';
-import { View } from 'react-native';
-import DATA from '../../data/data.json';
-import View_Board from './View_Board';
+import React from 'react'
+import { View, StyleSheet} from 'react-native'
+import DATA from '../../data/data.json'
+import View_Board from './View_Board'
+import styles from "../../styles/style.js"
 
 //The following class retrieves the list of all boards from data/data.json
 //It then calls on the class View_Boards. It parses through name and thinbnailPhoto values as props

@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text} from 'react-native';
+import { View, Text, StyleSheet} from 'react-native';
 import DATA from '../../data/data.json'
 import View_Task from './View_Task'
+import styles from '../../styles/style.js'
 
 //The following class receives a list and it's main function is to render it
 
@@ -10,7 +11,7 @@ import View_Task from './View_Task'
 // Move component to its own file 
 // Create a style for this component that both looks goods and is easy to understand
 
-export default class View_List extends React.Component {
+export default class View_List extends React.Component {npm
     constructor(props) {
         super(props)
         this.state = {
@@ -21,12 +22,13 @@ export default class View_List extends React.Component {
     render() {
         const {name, color} = this.props;
         return (
-            <View>
+            <View style={{backgroundColor:this.props.color}}>
+                <View style={styles.list}>
                 <Text>
-                    List: "{name}" in the color {color}
+                    List: "{name}"
                 </Text>
-                {this.state.tasks_on_list.map(({id, name, description, isFinished}) => <View_Task key={id} id={id} name={name} description={description} isFinished={isFinished}/>)}
-
+                   {this.state.tasks_on_list.map(({id, name, description, isFinished}) => <View_Task key={id} id={id} name={name} description={description} isFinished={isFinished}/>)}
+                </View>
             </View>
         )
     }
