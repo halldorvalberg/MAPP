@@ -1,31 +1,21 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
-import styles from '../../styles/style';
+import { FlatList } from 'react-native-gesture-handler';
+import Task_Item from './Task_Item'
 
-//The following class recives a task and it's main function is to render it
+const View_Task = ({tasks, navigation}) => (
+    <FlatList 
+        data = {tasks}
+        renderItem={({item: {id, name, description, isFinished} }) => (
+            <Task_Item
+                id = {id}
+                name = {name}
+                description = {description}
+                isFinished = {isFinished}
+                navigation = {navigation}
+            />
+        )}
+        keyExtractor={(elem) => elem.id}
+    />
+)
 
-// TO - DO
-// add functions that are connected to the element
-//      -Move task
-//      -Remove Task
-// Move component to its own file 
-// Create a style for this component that both looks goods and is easy to understand
-
-export default class View_Task extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        const{name, description, isFinished} = this.props;
-        return(
-            <View style={styles.task}>
-                <Text>
-                    Task name: "{name}"
-                    {/*{Task desc: "{description}"
-                    Task finished: {isFinished.toString()}*/}
-                </Text>
-            </View>
-        ) 
-    }
-}
+export default View_Task
