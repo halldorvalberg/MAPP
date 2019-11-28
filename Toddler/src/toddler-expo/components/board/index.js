@@ -1,15 +1,28 @@
 import React from 'react'
 import { View, StyleSheet} from 'react-native'
-import DATA from '../../data/data.json'
 import View_Board from './View_Board'
 import styles from "../../styles/style.js"
+import { get_all_boards} from '../../services/Board_Service'
 
 //The following class retrieves the list of all boards from data/data.json
 //It then calls on the class View_Boards. It parses through name and thinbnailPhoto values as props
 export default class Viewable_Boards extends React.Component {
     state = {
-        all_boards: DATA.boards
+        loadingData: false,
+        all_boards: [],
+        board: []
     }
+
+    async componentWillMount() {
+        await this._fetchItems();
+    }
+    
+    async _fetchItems() {
+        this.setState({loadingData: true});
+        const boards = await get_all_boards();
+        this.setState({loadingData:false, all_boards: boards});
+    }
+
     render() {
         const {all_boards} = this.state;
         return (
