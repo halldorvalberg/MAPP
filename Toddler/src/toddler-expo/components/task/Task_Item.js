@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native'
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import styles from '../../styles/style'
 
 const Task_Items = ({id, name, description, isFinished, navigation}) => (
     <View>
         <TouchableOpacity onPress={() => {navigation.navigate('Task', {listId: id})}}>
-            <View>
+            <View style={styles.task_item}>
                 <Text>
                     {name}
                 </Text>

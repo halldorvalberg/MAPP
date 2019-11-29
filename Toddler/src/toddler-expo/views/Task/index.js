@@ -1,11 +1,10 @@
-import React from 'react'
-import {View} from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
-
-
-import * as Lists_Service from '../../services/Lists_Service'
-import * as Tasks_Service from '../../services/Tasks_Service'
-import View_Task from '../../components/board/View_Task'
+import React from 'react';
+import {View, Button} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import * as Lists_Service from '../../services/Lists_Service';
+import * as Tasks_Service from '../../services/Tasks_Service';
+import View_Task from '../../components/task/View_Task';
+import styles from '../../styles/style';
 
 export default class Task extends React.Component {
     constructor(props) {
@@ -18,7 +17,7 @@ export default class Task extends React.Component {
     }
 
     async componentWillMount() {
-        await this.get_state()
+        await this.get_state();
     }
 
     async get_state() {
@@ -38,13 +37,18 @@ export default class Task extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <ScrollView>
                     <View_Task 
                         tasks = {this.state.tasks}
                         navigation = {this.props.navigation}
                     />
                 </ScrollView>
+                <Button 
+                    title="Add task" 
+                    color="#566573"
+                    onPress={() => Alert.alert('incredible functionality')}
+                />
             </View>
         )
     }

@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
-import Task_Item from './Task_Item'
+import Task_Item from './Task_Item';
 
 const View_Task = ({tasks, navigation}) => (
     <FlatList 
@@ -18,4 +18,4 @@ const View_Task = ({tasks, navigation}) => (
     />
 )
 
-export default View_Task
+export default View_Task;
