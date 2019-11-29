@@ -1,25 +1,36 @@
 import React from 'react';
+<<<<<<< HEAD
+import { View } from 'react-native'
+import { connect } from 'react-redux';
+import View_list from '../../components/board/View_List'
+=======
 import {View, Button, Alert} from 'react-native'
 import * as Lists_Service from '../../services/Lists_Service'
 import * as Board_Service from '../../services/Board_Service'
 import View_list from '../../components/list/View_List'
+>>>>>>> master
 import { ScrollView } from 'react-native-gesture-handler';
 import styles from '../../styles/style';
 
-export default class List extends React.Component {
-    constructor(props) {
-        super(props)
-        state = {
-            loadingData: false,
-            lists: [],
-            board: {}
-        }
-    }
+const List = ({ navigation, lists }) => {
+    const _lists = lists.filter(x => x.boardId === navigation.state.params.boardId)
+    return (
+        <View>
+            {/* Create new list func goes here */}
+            <ScrollView>
+                <View_list lists={_lists} />
+            </ScrollView>
+        </View>
+    )
+}
 
-    async componentWillMount() {
-        await this.get_state()
-    }
+const mapStateToProps = (state) => ({
+    lists: state.lists
+})
 
+<<<<<<< HEAD
+export default connect(mapStateToProps)(List);
+=======
     async get_state() {
         boardId = this.props.navigation.state.params.boardId;
         this.setState({loadingData: true});
@@ -53,3 +64,4 @@ export default class List extends React.Component {
         )
     }
 } 
+>>>>>>> master

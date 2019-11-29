@@ -1,8 +1,9 @@
 import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
+import { connect } from 'react-redux';
 import List_Items from './List_Items'
 
-const View_List = ({ lists, navigation }) => (
+const View_List = ({ lists }) => (
     <FlatList
         data={lists}
         renderItem={({ item: { id, name, color } }) => (
@@ -10,11 +11,10 @@ const View_List = ({ lists, navigation }) => (
                 id={id}
                 name={name}
                 color={color}
-                navigation={navigation}
             />
         )}
         keyExtractor={(elem) => elem.id.toString()}
     />
 )
 
-export default View_List
+export default connect(null)(View_List)
