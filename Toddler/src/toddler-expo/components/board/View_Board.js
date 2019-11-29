@@ -4,7 +4,6 @@ import Board_Items from './Board_Items';
 
 const View_Board = ({all_boards, navigation}) => (
         <FlatList
-            numColumns={2}
             data={all_boards}
             renderItem={({item: {id, name, thumbnailPhoto} }) => (
                 <Board_Items 

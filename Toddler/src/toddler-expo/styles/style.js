@@ -1,21 +1,19 @@
 import { View, StyleSheet } from 'react-native';
+import { withOrientation } from 'react-navigation';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1, 
         flexDirection: 'column',
         flexWrap: 'wrap',
-        backgroundColor: '#669966',
-        borderWidth:1,
+        backgroundColor: 'rgba(27,36,36,1)',
     },
 
     navbar: {
         width:'100%',
         height:100,
-        backgroundColor:'white',
         alignItems:'center',
         paddingTop:55,
-
     },
 
     boards: {
@@ -24,15 +22,15 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         padding:'5%',
-        marginTop:50
+        marginTop:50,
     },
 
     board: {
         width: '45%',
         height: 250,
-        backgroundColor: 'rgba(255,255,255,1)',
+        // backgroundColor: 'rgba(255,255,255,1)',
         marginTop: 20,
-        elevation:5
+        elevation: 5,
     },
 
     list: {
@@ -42,7 +40,28 @@ const styles = StyleSheet.create({
 
     task: {
         marginBottom:5,
-    }
+    },
+
+    board_item: {
+        backgroundColor: 'rgba(44,62,70,1)',
+        padding: 5,
+        flexDirection: 'row',
+        margin: 5
+    },
+
+    board_text: {
+        paddingLeft: '2%',
+        color: 'rgba(211,218,225,1)',
+        fontWeight: 'bold',
+        fontSize: 15
+    },
+
+    image: {
+        width: 110,
+        height: 70,
+        position: 'relative',
+      }
+
 });
 
 export default styles;
