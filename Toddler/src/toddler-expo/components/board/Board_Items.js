@@ -1,12 +1,15 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity } from 'react-native';
-import * as Board_Service from '../../services/Board_Service';
+
+import {connect} from 'react-redux'
+import {withNavigation} from 'react-navigation'
+
 import styles from './styles';
 
-const Board_Items = ({ id, name, thumbnailPhoto, navigation }) => (
+const Board_Items = ({ id, name, thumbnailPhoto, navigation: {navigate} }) => (
     <View>
         <TouchableOpacity
-            onPress={() => {navigation.navigate('List', {boardId: id});}}
+            onPress={() => {navigate('List', {boardId: id});}}
         >
             <View>
                 <Image
@@ -24,4 +27,4 @@ const Board_Items = ({ id, name, thumbnailPhoto, navigation }) => (
 
 )
 
-export default Board_Items;
+export default connect(null)(withNavigation(Board_Items));

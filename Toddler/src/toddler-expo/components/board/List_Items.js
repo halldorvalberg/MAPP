@@ -1,15 +1,19 @@
 import React from 'react';
-import {View, Text} from 'react-native'
+import { connect } from 'react-redux'
+import { View, Text } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import { TouchableHighlight } from "react-native-gesture-handler";
 
-const List_Items = ({id, name, color, navigation}) => (
-        <TouchableHighlight onPress={() => {navigation.navigate('Task', {listId: id})}}>
-            <View style={{backgroundColor: color}}>
-                <Text>
-                    {name}
-                </Text>
-            </View>
-        </TouchableHighlight>
+
+const List_Items = ({ id, name, color, navigation: { navigate } }) => (
+    <TouchableHighlight onPress={() => { navigate('Task', { listId: id }) }}>
+        <View style={{ backgroundColor: color }}>
+            <Text>
+                {name}
+            </Text>
+            <Text>-</Text>
+        </View>
+    </TouchableHighlight>
 )
 
-export default List_Items
+export default connect(null)(withNavigation(List_Items));

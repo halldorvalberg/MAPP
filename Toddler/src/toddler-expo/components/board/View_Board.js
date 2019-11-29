@@ -1,21 +1,30 @@
 import React from 'react'; 
-import { FlatList } from 'react-native-gesture-handler';
+import { Text, FlatList } from 'react-native-gesture-handler';
 import Board_Items from './Board_Items';
+import { connect } from 'react-redux';
 
-const View_Board = ({all_boards, navigation}) => (
+
+const View_Board = ({boards}) => (
         <FlatList
-            numColumns={2}
-            data={all_boards}
+            data={boards}
             renderItem={({item: {id, name, thumbnailPhoto} }) => (
                 <Board_Items 
                     id={id}
                     name = {name}
                     thumbnailPhoto = {thumbnailPhoto}
-                    navigation = {navigation}
                 />
             )}
             keyExtractor={(elem) => elem.id}
+            ListEmptyComponent={(
+                <Text>
+                    You have no boards. Tap 'Add board' to start creating a new board
+                </Text>
+            )}
         />
 );
 
-export default View_Board
+const mapStateToProps = (state) => ({
+    boards: state.boards
+})
+
+export default connect(mapStateToProps)(View_Board);
