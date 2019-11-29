@@ -11,21 +11,30 @@ export default class Task extends React.Component {
     constructor(props) {
         super(props)
         state = {
+            loadingData: false,
             tasks: [],
             list: {}
         }
     }
 
-    componentWillMount() {
-        this._get_state()
+    async componentWillMount() {
+        await this.get_state()
     }
 
-    _get_state = () => {
-        _listId = this.props.navigation.state.params.listId;
-        _list = Lists_Service._get_list_by_id(_listId)
-        _tasks = Tasks_Service._get_task_by_listId(_listId)
-        this.setState({tasks: _tasks, list: _list[0]})
+    async get_state() {
+        listId = this.props.navigation.state.params.listId;
+        this.setState({loadingData: true});
+        const list = await Lists_Service.get_list_by_id(listId);
+        const tasks = await Tasks_Service.get_tasks_by_listId(listId);
+        this.setState({loadingData: false, tasks, list});
     }
+
+    // _get_state = () => {
+    //     _listId = this.props.navigation.state.params.listId;
+    //     _list = Lists_Service._get_list_by_id(_listId)
+    //     _tasks = Tasks_Service._get_task_by_listId(_listId)
+    //     this.setState({tasks: _tasks, list: _list[0]})
+    // }
 
     render() {
         return (

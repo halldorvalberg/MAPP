@@ -8,28 +8,27 @@ export default class Board extends React.Component {
     constructor(props) {
         super(props);
         state = {
-            //State variables go here
+            loadingData: false,
             boards: []
         }
     }
 
-    componentWillMount() {
-        this._getBoards()
+    async componentWillMount() {
+        await this.get_boards()
     }
 
-    _getBoards = () => {
-        _allboards = Board_Service.get_all_boards()
-        this.setState({boards: _allboards})
+    async get_boards() {
+        this.setState({loadingData: true})
+        const boards = await Board_Service.get_all_boards()
+        this.setState({loadingData: false, boards})
     }
 
-    //Funtions go here
-    
+    //Funtions go here    
     //Render goes here
     render() {
         return (
             <View style={styles.container}>
                 {/**"Add new board" func goes here */}
-
                     <ScrollView>
                         <View_Board
                             all_boards = {this.state.boards}

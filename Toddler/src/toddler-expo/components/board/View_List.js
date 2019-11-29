@@ -13,7 +13,7 @@ const View_List = ({ lists, navigation }) => (
                 navigation={navigation}
             />
         )}
-        keyExtractor={(elem) => elem.id}
+        keyExtractor={(elem) => elem.id.toString()}
     />
 )
 

@@ -14,7 +14,7 @@ const View_Task = ({tasks, navigation}) => (
                 navigation = {navigation}
             />
         )}
-        keyExtractor={(elem) => elem.id}
+        keyExtractor={(elem) => elem.id.toString()}
     />
 )
 
