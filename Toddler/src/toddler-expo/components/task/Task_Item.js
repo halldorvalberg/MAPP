@@ -1,21 +1,17 @@
 import React from 'react';
-import {View, Text} from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import styles from '../../styles/style'
+import { View, Text } from 'react-native'
+import { connect } from 'react-redux'
+import { withNavigation } from 'react-navigation'
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const Task_Items = ({id, name, description, isFinished, navigation}) => (
+const Task_Items = ({ id, name, description, isFinished, navigation: { navigate } }) => (
     <View>
-        <TouchableOpacity onPress={() => {navigation.navigate('Task', {listId: id})}}>
-            <View style={styles.task_item}>
-                <Text>
-                    {name}
-                </Text>
-                <Text>
-                    {description}
-                </Text>
-                
+        <TouchableOpacity onPress={() => console.log("You just tapped a task item number " + id + ". Congratz!")}>
+            <View>
+                <Text> {name} </Text>
+                <Text> {description} </Text>
+
                 {isFinished == true ? <Text>Done</Text> : <Text>Not Done</Text>}
-                
                 <Text>-</Text>
 
             </View>
@@ -23,4 +19,4 @@ const Task_Items = ({id, name, description, isFinished, navigation}) => (
     </View>
 )
 
-export default Task_Items
+export default connect(null)(withNavigation(Task_Items));

@@ -1,8 +1,10 @@
-import React from 'react';
+import React from 'react'
 import { FlatList } from 'react-native-gesture-handler';
-import Task_Item from './Task_Item';
+import Task_Item from './Task_Item'
+import { connect } from 'react-redux';
 
-const View_Task = ({tasks, navigation}) => (
+
+const View_Task = ({tasks}) => (
     <FlatList 
         data = {tasks}
         renderItem={({item: {id, name, description, isFinished} }) => (
@@ -11,11 +13,10 @@ const View_Task = ({tasks, navigation}) => (
                 name = {name}
                 description = {description}
                 isFinished = {isFinished}
-                navigation = {navigation}
             />
         )}
         keyExtractor={(elem) => elem.id.toString()}
     />
 )
 
-export default View_Task;
+export default connect(null)(View_Task)

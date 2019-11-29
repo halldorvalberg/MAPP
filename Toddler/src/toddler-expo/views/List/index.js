@@ -1,7 +1,7 @@
 import React from 'react';
-import { View } from 'react-native'
+import { View, Button, Alert } from 'react-native'
 import { connect } from 'react-redux';
-import View_list from '../../components/board/View_List'
+import View_list from '../../components/list/View_List'
 import { ScrollView } from 'react-native-gesture-handler';
 import styles from '../../styles/style';
 
@@ -13,6 +13,12 @@ const List = ({ navigation, lists }) => {
             <ScrollView>
                 <View_list lists={_lists} />
             </ScrollView>
+
+            <Button
+                title="Add List"
+                color="#566573"
+                onPress={() => Alert.alert('incredible functionality')}
+            />
         </View>
     )
 }

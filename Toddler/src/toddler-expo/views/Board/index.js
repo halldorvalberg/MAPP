@@ -8,11 +8,11 @@ export default class Board extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button/>
+                <Button
                     onPress={() => Alert.alert('incredible functionality')}
                     color="#566573"
                     title="Add board" 
-                 
+                 />
                 <ScrollView>
                     <View_Board />
                 </ScrollView>
