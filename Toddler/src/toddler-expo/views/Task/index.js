@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux';
@@ -13,6 +14,11 @@ const Task = ({tasks, navigation}) => {
                         tasks={_tasks}
                     />
                 </ScrollView>
+                <Button 
+                    title="Add task" 
+                    color="#566573"
+                    onPress={() => Alert.alert('incredible functionality')}
+                />
             </View>
         )
 }

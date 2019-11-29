@@ -1,5 +1,5 @@
 import React from 'react';
-import AppContainer from './routes'
+import AppContainer from './routes';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
@@ -17,4 +17,3 @@ export default function App() {
         </Provider>
     );
 }
-
