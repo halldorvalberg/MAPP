@@ -1,9 +1,10 @@
 import React from 'react';
-import {View} from 'react-native'
+import {View, Button, Alert} from 'react-native'
 import * as Lists_Service from '../../services/Lists_Service'
 import * as Board_Service from '../../services/Board_Service'
-import View_list from '../../components/board/View_List'
+import View_list from '../../components/list/View_List'
 import { ScrollView } from 'react-native-gesture-handler';
+import styles from '../../styles/style';
 
 export default class List extends React.Component {
     constructor(props) {
@@ -36,13 +37,18 @@ export default class List extends React.Component {
 
     render() {
         return(
-            <View>
+            <View style={styles.container}>
                 <ScrollView>
                     <View_list 
                         lists = {this.state.lists}
                         navigation = {this.props.navigation}
                     />
                 </ScrollView>
+                <Button 
+                    title="Add list" 
+                    color="#566573"
+                    onPress={() => Alert.alert('incredible functionality')}
+                />
             </View>
         )
     }

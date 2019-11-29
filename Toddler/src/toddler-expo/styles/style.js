@@ -42,6 +42,23 @@ const styles = StyleSheet.create({
         marginBottom:5,
     },
 
+    task_item: {
+        backgroundColor: '#cccccc',
+        padding: 5,
+        margin: 5
+    },
+
+    list_item: {
+        padding: 5,
+        margin: 5
+    },
+
+    list_text: {
+        paddingLeft: '1%',
+        fontWeight: 'bold',
+        fontSize: 15
+    },
+
     board_item: {
         backgroundColor: 'rgba(44,62,70,1)',
         padding: 5,
