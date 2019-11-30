@@ -13,6 +13,7 @@ const Task = ({tasks, navigation}) => {
                 <ScrollView>
                     <View_Task
                         tasks={_tasks}
+                        listId={_listId}
                     />
                 </ScrollView>
                 <Button 

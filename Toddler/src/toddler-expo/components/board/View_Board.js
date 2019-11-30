@@ -15,9 +15,6 @@ const View_Board = ({ boards }) => (
             />
         )}
         keyExtractor={(elem) => elem.id.toString()}
-        ListEmptyComponent={(
-            "Hello, there are no boards here"
-        )}
     />
 
 );
