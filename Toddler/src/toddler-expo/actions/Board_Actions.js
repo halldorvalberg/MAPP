@@ -6,3 +6,16 @@ export const Create_Board = (board_input) => ({
         board_input
     }
 }) 
+
+export const Remove_Board = (id) => ({
+    type: constants.REMOVE_BOARD,
+    payload: {
+        id
+    }
+}) 
+export const Update_Board = (input) => ({
+    type: constants.UPDATE_BOARD,
+    payload: {
+        input
+    }
+}) 

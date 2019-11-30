@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     board: {
         width: '45%',
         height: 250,
-        // backgroundColor: 'rgba(255,255,255,1)',
         marginTop: 20,
         elevation: 5,
     },
@@ -98,6 +97,12 @@ const styles = StyleSheet.create({
         height: 40,
         marginBottom: 20,
         backgroundColor: 'rgba(230, 235, 235, 1)'
+    },
+
+    delete: {
+        flexDirection: 'row', 
+        marginLeft: 'auto', 
+        height: 20
     }
 });
 

@@ -5,4 +5,18 @@ export const Create_Task = (task_input) => ({
     payload: {
         task_input
     }
-}) 
+});
+
+export const Remove_Task = (taskId) => ({
+    type: constants.REMOVE_TASK,
+    payload : {
+        taskId
+    }
+})
+
+export const Update_Task = (task) => ({
+    type: constants.UPDATE_TASK,
+    payload: {
+        task
+    }
+})
