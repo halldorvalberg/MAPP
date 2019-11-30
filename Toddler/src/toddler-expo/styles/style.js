@@ -77,8 +77,28 @@ const styles = StyleSheet.create({
         width: 110,
         height: 70,
         position: 'relative',
-      }
+      },
 
+    input: {
+        padding: 5,
+        marginVertical: 20,
+        marginHorizontal: 5,
+        height: 40
+    },
+
+    input_button_text: {
+        color: 'rgba(160,160,160,1)', 
+        fontWeight: 'bold',
+        fontSize: 15
+    },
+
+    input_button: {
+        alignItems: 'center',
+        padding: 10,
+        height: 40,
+        marginBottom: 20,
+        backgroundColor: 'rgba(230, 235, 235, 1)'
+    }
 });
 
 export default styles;

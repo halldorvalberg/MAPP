@@ -7,15 +7,14 @@ export default class Board extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <ScrollView>
+                    <View_Board />
+                </ScrollView>
                 <Button
                     onPress={() => this.props.navigation.navigate('Board_Input')}
                     color="#566573"
                     title="Add board"
                 />
-                <ScrollView>
-                    <View_Board />
-                </ScrollView>
-
             </View>
         )
     }

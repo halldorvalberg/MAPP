@@ -4,12 +4,13 @@ import { View, Button, Alert} from 'react-native'
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native-gesture-handler'
 import View_Task from '../../components/task/View_Task'
+import styles from '../../styles/style'
 
 const Task = ({tasks, navigation}) => {
     const _listId = navigation.state.params.listId
     const _tasks = tasks.filter(x => x.listId === navigation.state.params.listId)
     return (
-            <View>
+            <View style={styles.container}>
                 <ScrollView>
                     <View_Task
                         tasks={_tasks}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Button, TextInput } from 'react-native';
+import styles from '../../styles/style';
 
 const _state = {
     input: {
@@ -39,6 +40,7 @@ class Task_Input_Form extends React.Component {
                     placeholder="Enter task name"
                     value={input.name}
                     onChangeText={(text) => this.input_handler('name', text)}
+                    style={styles.input}
                 />  
 
                 <TextInput
@@ -46,10 +48,12 @@ class Task_Input_Form extends React.Component {
                     placeholder="Enter task description"
                     value={input.description}
                     onChangeText={(text) => this.input_handler('description', text)}
+                    style={styles.input}
                 />  
 
 
                 <Button
+                    color="#566573"
                     title="Create new task"
                     onPress={() => this.create_new_task()}
                 />

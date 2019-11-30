@@ -9,8 +9,7 @@ const List = ({ navigation, lists }) => {
     const _boardId = navigation.state.params.boardId
     const _lists = lists.filter(x => x.boardId === navigation.state.params.boardId)
     return (
-        <View>
-            {/* Create new list func goes here */}
+        <View style={styles.container}>
             <ScrollView>
                 <View_list lists={_lists} />
             </ScrollView>
