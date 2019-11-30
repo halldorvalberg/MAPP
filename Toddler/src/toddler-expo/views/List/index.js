@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import styles from '../../styles/style';
 
 const List = ({ navigation, lists }) => {
+    const _boardId = navigation.state.params.boardId
     const _lists = lists.filter(x => x.boardId === navigation.state.params.boardId)
     return (
         <View>
@@ -17,7 +18,7 @@ const List = ({ navigation, lists }) => {
             <Button
                 title="Add List"
                 color="#566573"
-                onPress={() => Alert.alert('incredible functionality')}
+                onPress={() => navigation.navigate('List_Input', boardId={_boardId})}
             />
         </View>
     )

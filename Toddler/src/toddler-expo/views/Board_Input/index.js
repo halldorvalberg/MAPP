@@ -1,33 +1,21 @@
 import React from 'react'
-import { Button, View, TextInput } from 'react-native'
+import { connect } from 'react-redux';
 
+import { View } from 'react-native'
+import { Create_Board } from '../../actions/Board_Actions'
+import Board_Input_Form from '../../components/Board_Input_Form'
 
-export default class Board_input extends React.Component {
-    state = {
-        name: '',
+const Board_Input = ({ Create_Board }) => {
+
+    const sumbit_function = (board) => {
+        Create_Board(board)
     }
 
-    onInputHandler(name, value) {
-        console.log(name + " | " + value)
-        this.setState({ [ name ]: value });
-    }
+    return (
+        <View>
+            <Board_Input_Form sumbit_function={sumbit_function} />
+        </View>
+    );
+};
 
-    onPress() {
-        const {name} = this.state;
-        console.log(name)
-    }
-
-    render() {
-        return (
-            <View>
-                <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                    title={'Name'}
-                    placeholder={'Enter name of new board'}
-                    onChangeText={text => this.onInputHandler('name', text)}
-                />
-                <Button title="Submit new board" onPress={() => this.onPress() }/>
-            </View>
-        )
-    }
-}
+export default connect(null, { Create_Board })(Board_Input);

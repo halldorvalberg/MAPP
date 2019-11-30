@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import View_Task from '../../components/task/View_Task'
 
 const Task = ({tasks, navigation}) => {
+    const _listId = navigation.state.params.listId
     const _tasks = tasks.filter(x => x.listId === navigation.state.params.listId)
     return (
             <View>
@@ -17,7 +18,7 @@ const Task = ({tasks, navigation}) => {
                 <Button 
                     title="Add task" 
                     color="#566573"
-                    onPress={() => Alert.alert('incredible functionality')}
+                    onPress={() => navigation.navigate('Task_Input', listId={_listId})}
                 />
             </View>
         )
