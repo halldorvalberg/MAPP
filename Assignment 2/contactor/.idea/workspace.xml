@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="01cfaa11-e7fa-4b7d-9a11-8917425e1e58" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Toddler/assignment-i.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/.expo-shared/assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/actions/Board_Actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/actions/List_Actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/actions/Task_Actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/assets/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/assets/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/babel.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/components/Board_Input_Form/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/components/List_Input_Form/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/components/Task_Input_Form/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/components/board/Board_Items.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/components/board/View_Board.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/components/list/List_Items.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/components/list/View_List.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/components/task/Task_Item.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/components/task/View_Task.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/constants/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/data/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/reducers/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/routes/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/services/Board_Service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/services/Image_Service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/services/Lists_Service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/services/Tasks_Service.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/styles/style.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/views/Board/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/views/Board_Input/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/views/Home/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/views/List/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/views/List_Input/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/views/Task/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Toddler/src/toddler-expo/views/Task_Input/index.js" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1087" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="01cfaa11-e7fa-4b7d-9a11-8917425e1e58" name="Default Changelist" comment="" />
+      <created>1575283615910</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575283615910</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="953" y="0" width="974" height="1087" extended-state="0" />
+    <layout>
+      <window_info id="Capture Tool" />
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32905984" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Resources Explorer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Captures" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Palette&#9;" />
+    </layout>
+  </component>
+</project>
