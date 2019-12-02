@@ -11,10 +11,10 @@ export const get_contacts = async () => {
     if (get_permission() != 'granted') {
         return -1;
     } 
-
+    
     // Contacts.getContactsAsync(contactQuery: ContactQuery)
     const data = await Contacts.getContactsAsync({})
-    return data;
+    return Promise.all(data);
 }
 
 export const get_contact_by_id = async (id) => {
