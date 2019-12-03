@@ -10,19 +10,25 @@ class Contact_Detail extends React.Component {
         const { contact } = this.props.navigation.state.params;
         return (
             <View style={styles.container}>
-                    <Image 
-                        source={{uri: contact.image.uri}}
-                        resizeMode="cover"
-                        style={styles.contact_image} 
-                    />
-                    <View style={styles.contact_details}>
-                        <Text>
-                            {contact.name}
-                        </Text>
-                        <Text>
-                            {contact.phoneNumbers[0].number}
-                        </Text>
-                    </View>
+                {
+                    contact.imageAvailable
+                        ?
+                        <Image
+                            source={{ uri: contact.image.uri }}
+                            resizeMode="cover"
+                            style={styles.contact_image}
+                        />
+                        :
+                        <Text></Text>
+                }
+                <View style={styles.contact_details}>
+                    <Text>
+                        {contact.name}
+                    </Text>
+                    <Text>
+                        {contact.phoneNumbers[0].number}
+                    </Text>
+                </View>
             </View>
         )
     }
