@@ -4,6 +4,7 @@ import { withOrientation } from 'react-navigation';
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#eee',
+        height:'100%',
     },
 
     flat_list:{
@@ -48,10 +49,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection:'column',
         flexWrap:'wrap',
-        borderWidth:1,
-        borderColor:'#5e5e5e',
-        borderRadius:5,
-        elevation:10
+        
     },
 
     contact_image:{
@@ -60,10 +58,14 @@ const styles = StyleSheet.create({
     },
 
     contact_details: {
-        width:'auto',
+        width:'90%',
         height:'auto',
         padding:'5%',
-        margin:'5%'
+        borderWidth:1,
+        borderColor:'#dddddd',
+        borderRadius:10,
+        margin:'5%',
+        backgroundColor:'#ffffff'
     },
 
     contact_header:{
