@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 
 import { Text, View, Image } from 'react-native'
-import { TouchableOpacitygit  } from 'react-native-gesture-handler'
+import { TouchableOpacity  } from 'react-native-gesture-handler'
 import styles from '../../style.js'
 
 const Contact_List_Item = ({ contact, navigation: {navigate} }) => {
