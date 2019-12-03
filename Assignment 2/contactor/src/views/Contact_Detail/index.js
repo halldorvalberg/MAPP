@@ -33,7 +33,7 @@ class Contact_Detail extends React.Component {
                         
                 </View>
 
-                <View>
+                <View style={styles.contact_buttons}>
                     <Button
                             title={'Call'}
                             onPress={() => Linking.openURL('tel:' + contact.phoneNumbers[0].number)}
