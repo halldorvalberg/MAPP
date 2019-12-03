@@ -3,10 +3,12 @@ import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 
 import { Text, View, Image } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TouchableOpacitygit  } from 'react-native-gesture-handler'
 import styles from '../../style.js'
 
 const Contact_List_Item = ({ contact, navigation: {navigate} }) => {
+    console.log("This happens when the item is rendered")
+    console.log(contact)
     return (
         <TouchableOpacity
             onPress={() => navigate('Contact_Detail', {name: contact.name, phone_number: contact.phone_number, image: contact.image}) }
