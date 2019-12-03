@@ -22,7 +22,7 @@ class Contact_Detail extends React.Component {
                         <Text></Text>
                 }
                 <View style={styles.contact_details}>
-                    <Text>
+                    <Text style={{fontWeight:'bold', fontSize:20}}>
                         {contact.name}
                     </Text>
                     <Text>
