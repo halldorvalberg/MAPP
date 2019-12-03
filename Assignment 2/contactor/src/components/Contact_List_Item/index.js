@@ -7,16 +7,14 @@ import { TouchableOpacity  } from 'react-native-gesture-handler'
 import styles from '../../style.js'
 
 const Contact_List_Item = ({ contact, navigation: {navigate} }) => {
-    console.log("This happens when the item is rendered")
-    console.log(contact)
     return (
         <TouchableOpacity
-            onPress={() => navigate('Contact_Detail', {name: contact.name, phone_number: contact.phoneNumber[0].number, image: contact.image.uri}) }
+            onPress={() => navigate('Contact_Detail', {contact: contact}) }
         >
             <View style={styles.flat_list_item}>
                 
                 {
-                    contact.imageAvailabe
+                    contact.imageAvailable
                     ? 
                     <Image source={{ uri: contact.image.uri }}
                     resizeMode="cover"

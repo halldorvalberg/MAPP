@@ -5,23 +5,22 @@ import styles from "../../style.js"
 class Contact_Detail extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props)
     }
     render() {
-        const { name, image, phone_number } = this.props.navigation.state.params;
+        const { contact } = this.props.navigation.state.params;
         return (
             <View style={styles.container}>
                     <Image 
-                        source={{uri: image}}
+                        source={{uri: contact.image.uri}}
                         resizeMode="cover"
-                        style={styles.contact_iamge} 
+                        style={styles.contact_image} 
                     />
                     <View style={styles.contact_details}>
                         <Text>
-                            {name}
+                            {contact.name}
                         </Text>
                         <Text>
-                            {phone_number}
+                            {contact.phoneNumbers[0].number}
                         </Text>
                     </View>
             </View>
