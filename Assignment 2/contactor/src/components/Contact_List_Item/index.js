@@ -3,22 +3,33 @@ import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 
 import { Text, View, Image } from 'react-native'
-import { TouchableHighlight } from 'react-native-gesture-handler'
+import { TouchableOpacity  } from 'react-native-gesture-handler'
+import styles from '../../style.js'
 
 const Contact_List_Item = ({ contact, navigation: {navigate} }) => {
-    console.log("This happens when the item is rendered")
-    console.log(contact)
     return (
-        <TouchableHighlight
-            onPress={() => navigate('Contact_Detail', {name: contact.name, phone_number: contact.phone_number, image: contact.image}) }
+        <TouchableOpacity
+            onPress={() => navigate('Contact_Detail', {contact: contact}) }
         >
-            <View>
-                <Text> {contact.name} </Text>
+            <View style={styles.flat_list_item}>
+                
+                {
+                    contact.imageAvailable
+                    ? 
+                    <Image source={{ uri: contact.image.uri }}
+                    resizeMode="cover"
+                    style={styles.flat_list_item_image} />
+                    :
+                    <Image source={{ uri: 'https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png' }}
+                    resizeMode="cover"
+                    style={styles.flat_list_item_image} />
+                }
                 {/* <Image source={{ uri: contact.image }}
                     resizeMode="cover"
-                    style={{ height: 100, width: 100 }} /> */}
+                    style={styles.flat_list_item_image} /> */}
+                <Text style={styles.flat_list_item_text}> {contact.name} </Text>
             </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
     )
 }
 

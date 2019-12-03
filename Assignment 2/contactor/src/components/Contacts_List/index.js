@@ -22,7 +22,13 @@ class Contacts_List extends React.Component {
         const data = await Contact_Service.get_contacts();
 
         if (data.length > 0) {
-            this.setState({my_contacts: data});
+            const contact = data;
+            contact.sort(function(a, b) {
+                if(a.name < b.name) {return -1;}
+                if(a.name > b.name) {return 1;}
+                return 0;
+            })
+            this.setState({my_contacts: contact})
         }
     };
 
@@ -31,7 +37,7 @@ class Contacts_List extends React.Component {
         const {my_contacts} = this.state;
         return (
             <View style={styles.container}>
-                <View style={styles.contact_header}>
+                <View style={styles.contact_list_header}>
                     <Text style={{ fontSize: 40, fontWeight: 'bold' }}>CONTACTS</Text>
                 </View>
                 <FlatList
