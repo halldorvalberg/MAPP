@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { FlatList } from "react-native-gesture-handler";
 import styles from '../../style.js'
 
-
 import * as Contacts from 'expo-contacts';
 import * as Permissions from 'expo-permissions';
+import * as Contact_Service from '../../services/Contacts_Service'
 import Contact_List_Item from '../Contact_List_Item'
 
 class Contacts_List extends React.Component {
@@ -14,27 +14,21 @@ class Contacts_List extends React.Component {
         super(props)
 
         this.state = {
-            my_contacts : []
+            my_contacts: []
         }
     }
 
     componentWillMount = async () => {
-        const { status } = await Permissions.askAsync(Permissions.CONTACTS);
-        if (status === 'granted') {
-            const { data } = await Contacts.getContactsAsync();
+        const data = await Contact_Service.get_contacts();
 
-            if (data.length > 0) {
-                const contact = data;
-                this.setState({my_contacts: contact})
-                console.log("This happens when the component mounts")
-                console.log(this.state.my_contacts)
-            }
+        if (data.length > 0) {
+            this.setState({my_contacts: data});
         }
     };
 
 
     render() {
-        const {my_contacts} = this.state
+        const {my_contacts} = this.state;
         return (
             <View style={styles.container}>
                 <View style={styles.contact_header}>

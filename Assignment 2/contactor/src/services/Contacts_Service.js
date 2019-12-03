@@ -1,21 +1,51 @@
 import * as Contacts from 'expo-contacts';
 import * as Permissions from 'expo-permissions';
+
+ import {save_contact, get_all_contacts} from './File_Service.js';
+
+// import * as FS from './File_Service.js'
+
 import { Platform } from 'react-native'
 
 async function get_permission() {
-    const status = await Permissions.askAsync(Permissions.Contacts)
-    return status;
+    const status = await Permissions.askAsync(Permissions.CONTACTS);
+    return status.status;
 }
 
-export const get_contacts = async () => {
-    if (get_permission() != 'granted') {
+async function import_from_os() {
+    if (await get_permission() != 'granted') {
+        console.log("ERROR in permissions - status: ", status)
         return -1;
     } 
     
     // Contacts.getContactsAsync(contactQuery: ContactQuery)
-    const data = await Contacts.getContactsAsync({})
-    return Promise.all(data);
+    const data = await Contacts.getContactsAsync({});
+
+    // Save each contact to AsyncStorage
+    data.data.forEach(save_contact);
 }
+
+export const get_contacts = async () => {
+    import_from_os();
+
+    // Save each contact to AsyncStorage
+    const contacts = await get_all_contacts();
+    return contacts;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/// ALL ADDED FUNCTIONALITY IN DATA.JSON NOT FROM PHONE STORAGE
 
 export const get_contact_by_id = async (id) => {
     if (get_permission() != 'granted') {
