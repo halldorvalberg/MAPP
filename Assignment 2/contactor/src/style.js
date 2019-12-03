@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#ffffff'
     },
 
-    contact_header:{
+    contact_list_header:{
         flex:1,
         justifyContent:'center',
         marginLeft:'auto',
