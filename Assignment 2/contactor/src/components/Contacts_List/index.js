@@ -37,7 +37,7 @@ class Contacts_List extends React.Component {
         const {my_contacts} = this.state
         return (
             <View style={styles.container}>
-                <View style={styles.contact_header}>
+                <View style={styles.contact_list_header}>
                     <Text style={{ fontSize: 40, fontWeight: 'bold' }}>CONTACTS</Text>
                 </View>
                 <FlatList
