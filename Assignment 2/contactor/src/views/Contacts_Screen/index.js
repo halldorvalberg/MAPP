@@ -6,7 +6,6 @@ import Contacts_List from '../../components/Contacts_List'
 const Contacts_Screen = () => {
     return (
         <ScrollView>
-            {/* <Text>View console</Text> */}
             <Contacts_List/>
         </ScrollView>
     )

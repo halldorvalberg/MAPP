@@ -25,9 +25,12 @@ class Contacts_List extends React.Component {
 
             if (data.length > 0) {
                 const contact = data;
+                contact.sort(function(a, b) {
+                    if(a.name < b.name) {return -1;}
+                    if(a.name > b.name) {return 1;}
+                    return 0;
+                })
                 this.setState({my_contacts: contact})
-                console.log("This happens when the component mounts")
-                console.log(this.state.my_contacts)
             }
         }
     };
