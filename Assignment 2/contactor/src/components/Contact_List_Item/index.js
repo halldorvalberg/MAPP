@@ -11,12 +11,24 @@ const Contact_List_Item = ({ contact, navigation: {navigate} }) => {
     console.log(contact)
     return (
         <TouchableOpacity
-            onPress={() => navigate('Contact_Detail', {name: contact.name, phone_number: contact.phone_number, image: contact.image}) }
+            onPress={() => navigate('Contact_Detail', {name: contact.name, phone_number: contact.phoneNumber[0].number, image: contact.image.uri}) }
         >
             <View style={styles.flat_list_item}>
-                <Image source={{ uri: contact.image }}
+                
+                {
+                    contact.imageAvailabe
+                    ? 
+                    <Image source={{ uri: contact.image.uri }}
                     resizeMode="cover"
                     style={styles.flat_list_item_image} />
+                    :
+                    <Image source={{ uri: 'https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png' }}
+                    resizeMode="cover"
+                    style={styles.flat_list_item_image} />
+                }
+                {/* <Image source={{ uri: contact.image }}
+                    resizeMode="cover"
+                    style={styles.flat_list_item_image} /> */}
                 <Text style={styles.flat_list_item_text}> {contact.name} </Text>
             </View>
         </TouchableOpacity>
