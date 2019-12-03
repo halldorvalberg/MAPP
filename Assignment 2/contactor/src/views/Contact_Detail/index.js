@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Image, Button, Alert} from 'react-native'
+import { Linking } from 'expo';
+import { View, Text, Image, Button, Alert } from 'react-native'
 import styles from "../../style.js"
 
 class Contact_Detail extends React.Component {
@@ -29,14 +30,15 @@ class Contact_Detail extends React.Component {
                     <Text>
                         {contact.phoneNumbers[0].number}
                     </Text>
+                        
                 </View>
-                
-                <View style={styles.contact_buttons}>
+
+                <View>
                     <Button
-                        title={'Call'}
-                        style={{height:100}}
-                        onPress={() => Alert.alert("This button should open the phone app and allow you to call the user... but it does't ... yet")}
-                    />
+                            title={'Call'}
+                            onPress={() => Linking.openURL('tel:' + contact.phoneNumbers[0].number)}
+
+                        />
                     <Button
                         title={'Edit'}
                         onPress={() => Alert.alert('Here we will put the edit functionality')}
