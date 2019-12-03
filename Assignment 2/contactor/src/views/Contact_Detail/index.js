@@ -29,18 +29,16 @@ class Contact_Detail extends React.Component {
                     <Text>
                         {contact.phoneNumbers[0].number}
                     </Text>
-
-                    <View>
-                    <Button
-                        title={'Call'}
-                        onPress={() => Alert.alert("This button should open the phone app and allow you to call the user... but it does't ... yet")}
-                    />
-                </View>
                 </View>
                 
-                <View>
+                <View style={styles.contact_buttons}>
                     <Button
-                        title={'Edit User'}
+                        title={'Call'}
+                        style={{height:100}}
+                        onPress={() => Alert.alert("This button should open the phone app and allow you to call the user... but it does't ... yet")}
+                    />
+                    <Button
+                        title={'Edit'}
                         onPress={() => Alert.alert('Here we will put the edit functionality')}
                     />
                 </View>

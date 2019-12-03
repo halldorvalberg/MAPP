@@ -91,8 +91,14 @@ const styles = StyleSheet.create({
         borderRadius:5,
         margin:5,
         elevation:10
-    }
+    },
 
+    contact_buttons:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignItems:'baseline'
+    }
 });
 
 export default styles;
