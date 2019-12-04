@@ -17,6 +17,7 @@ class Contact_Detail extends React.Component {
     async componentWillMount() {
         const _contact = await get_contact(this.props.navigation.state.params.name + ".json")
         this.setState({contact: _contact})
+        console.log(_contact)
     }
 
     render() {
