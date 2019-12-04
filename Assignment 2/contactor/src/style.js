@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     flat_list_item_text: {
         fontSize:20,
         marginLeft:10,
+        width:'70%'
     },
 
     contact: {
