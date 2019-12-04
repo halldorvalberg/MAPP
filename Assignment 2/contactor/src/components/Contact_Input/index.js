@@ -1,7 +1,9 @@
 import React from 'react'
-import {View, TextInput , Button, Text, TouchableHighlight} from 'react-native'
-import {Icon} from 'react-native-elements'
+import { View, TextInput, Button, Text, TouchableHighlight } from 'react-native'
+import { Icon } from 'react-native-elements'
 import styles from '../../style.js'
+
+import { get_contact } from '../../services/Contacts_Service'
 
 const _state = {
     name: '',
@@ -13,13 +15,16 @@ export default class Contact_Input extends React.Component {
     constructor(props) {
         super(props)
         this.state = _state
-        console.log(this.state)
     }
 
-    componentWillMount() {
+    async componentWillMount() {
         this.setState(_state)
 
-        const obj = this.props.contact_obj
+        const _contact_object = await get_contact(this.props.contact_name+".json") 
+
+
+        const obj = _contact_object//this.props.contact_obj
+        console.log(obj)
         // console.log(obj.contact.phoneNumbers[0].number)
         if (obj.contact.imageAvailable) {
             this.setState({ name: obj.contact.name, number: obj.contact.phoneNumbers[0].number, image: obj.contact.image.uri })
@@ -29,8 +34,9 @@ export default class Contact_Input extends React.Component {
         }
     }
 
-    _submit_pressed() {
-        const obj = this.props.contact_obj;
+    async _submit_pressed() {
+        const obj = await get_contact(this.props.contact_name+".json");
+        console.log(obj)
         if (obj === 'undefined') {
             console.log("I am undefined");
             obj.contact = {};
@@ -45,7 +51,7 @@ export default class Contact_Input extends React.Component {
             obj.contact.phoneNumbers[0].number = this.state.number;
         }
         if (this.state.image.length > 0) {
-            if (!obj.contact.imageAvailable) {obj.contact.imageAvailable = true;}
+            if (!obj.contact.imageAvailable) { obj.contact.imageAvailable = true; }
             obj.contact.image = {};
             obj.contact.image.uri = this.state.image;
         }
@@ -83,9 +89,9 @@ export default class Contact_Input extends React.Component {
                             value={number}
                         />
                     </View>
-                        <TouchableHighlight>
-                            <Icon reverse name='device-camera' type='octicon' />
-                        </TouchableHighlight>
+                    <TouchableHighlight>
+                        <Icon reverse name='device-camera' type='octicon' />
+                    </TouchableHighlight>
                     <View>
                         {/* IMPLEMENT ME!! */}
                     </View>

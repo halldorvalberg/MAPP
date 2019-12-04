@@ -24,11 +24,8 @@ class Contacts_List extends React.Component {
 
     componentWillMount = async () => {
         this.setState({ loading_data: true })
-
-        console.log('Component Will Mount Loading_data: True')
         const contacts = await Contact_Service.get_all_contacts();
         this.setState({ my_contacts: contacts, loading_data: false })
-        console.log('Component Will Mount Loading_Data: flse')
     
     };
 

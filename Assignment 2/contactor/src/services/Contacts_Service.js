@@ -42,7 +42,11 @@ async function import_from_os() {
 }
 
 export const edit_contact = async (_old, _new) => {
-    remove_contact(_old);
+    console.log("_old.name")
+    console.log(_old.contact.name)
+    console.log("_new")
+    console.log(_new)
+    remove_contact(_old.name);
     save_contact(_new);
 }
 
@@ -81,7 +85,7 @@ export const get_contact = async(name) => {
 
 export async function remove_contact(name) {
     try {
-        await Filesystem.deleteAsync(dir_contacts + name + '.json');
+        await FileSystem.deleteAsync(dir_contacts + name + '.json');
     } catch(e) {
         console.log("Error: Directory/File does not exist " + e);
     }
