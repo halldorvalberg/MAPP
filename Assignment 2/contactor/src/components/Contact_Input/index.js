@@ -1,25 +1,30 @@
 import React from 'react'
-import {View, TextInput , Button, Text} from 'react-native'
+import { View, TextInput, Button, Text } from 'react-native'
 import styles from '../../style.js'
 
+const _state = {
+    name: '',
+    number: '',
+    image: ''
+}
+
 export default class Contact_Input extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state = {
-            name: '',
-            number: '',
-            image: ''
-        }
+        this.state = _state
+        console.log(this.state)
     }
 
-    componentWillMount(){
+    componentWillMount() {
+        this.setState(_state)
+
         const obj = this.props.contact_obj
-        console.log(obj.contact.phoneNumbers[0].number)
-        if(obj.contact.imageAvailable){
-            this.setState({name: obj.contact.name, number: obj.contact.phoneNumbers[0].number, image: obj.contact.image.uri })
+        // console.log(obj.contact.phoneNumbers[0].number)
+        if (obj.contact.imageAvailable) {
+            this.setState({ name: obj.contact.name, number: obj.contact.phoneNumbers[0].number, image: obj.contact.image.uri })
         }
         else {
-            this.setState({name: obj.contact.name, number: obj.contact.phoneNumbers[0].number, image: '' })
+            this.setState({ name: obj.contact.name, number: obj.contact.phoneNumbers[0].number, image: '' })
         }
     }
 
@@ -27,8 +32,8 @@ export default class Contact_Input extends React.Component {
         const obj = this.props.contact_obj
         obj.contact.name = this.state.name
         obj.contact.phoneNumbers[0].number = this.state.number
-        obj.contact.image.uri = this.state.image
-
+        //obj.contact.image.uri = this.state.image
+        // console.log(obj)
         this.props._submit_function(obj)
     }
 
@@ -38,8 +43,8 @@ export default class Contact_Input extends React.Component {
      */
 
     render() {
-        const {name, number, image} = this.state
-        return(
+        const { name, number, image } = this.state
+        return (
             <View style={styles.container}>
                 <View style={styles.contact_list_header}>
                     <Text style={{ fontSize: 40, fontWeight: 'bold' }}>EDIT CONTACT</Text>
@@ -48,18 +53,18 @@ export default class Contact_Input extends React.Component {
                     {/* Import Name */}
                     <Text>Name:</Text>
                     <View style={styles.search}>
-                        <TextInput 
-                            onChangeText={text => this.setState({name: text})}
-                            value = {name}
+                        <TextInput
+                            onChangeText={text => this.setState({ name: text })}
+                            value={name}
                         />
                     </View>
-        
+
                     {/* Import Phone number */}
                     <Text>Phone number:</Text>
                     <View style={styles.search}>
-                        <TextInput 
-                            onChangeText={text => this.setState({number: text})}
-                            value = {number}
+                        <TextInput
+                            onChangeText={text => this.setState({ number: text })}
+                            value={number}
                         />
                     </View>
                         <TouchableHighlight>
@@ -75,7 +80,7 @@ export default class Contact_Input extends React.Component {
                         title={
                             'Submit'
                         }
-                        onPress={() => {this._submit_pressed()}}
+                        onPress={() => { this._submit_pressed() }}
                     />
                 </View>
             </View>

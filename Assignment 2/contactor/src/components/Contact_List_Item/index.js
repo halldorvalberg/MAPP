@@ -9,7 +9,7 @@ import styles from '../../style.js'
 const Contact_List_Item = ({ contact, navigation: {navigate} }) => {
     return (
         <TouchableOpacity
-            onPress={() => navigate('Contact_Detail', {contact: contact}) }
+            onPress={() => navigate('Contact_Detail', {name: contact.name}) }
         >
             <View style={styles.flat_list_item}>
                 

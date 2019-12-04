@@ -22,10 +22,11 @@ class Input_User extends React.Component {
 
         if(action_type === 'UPDATE')
         {
-            
+            console.log("Im here")
         }
         else
         {
+            console.log("Im nost suposed to be here")
             Contact_Service.save_contact(object)
         }
     }

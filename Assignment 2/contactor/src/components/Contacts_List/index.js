@@ -3,6 +3,10 @@ import { Text, View, TextInput, Button } from 'react-native'
 import { FlatList } from "react-native-gesture-handler";
 import styles from '../../style.js'
 
+import {connect} from 'react-redux'
+import { withNavigation } from 'react-navigation'
+
+
 import * as Contact_Service from '../../services/Contacts_Service'
 import Contact_List_Item from '../Contact_List_Item'
 
@@ -16,9 +20,6 @@ class Contacts_List extends React.Component {
             my_contacts: [],
             search_input: ''
         }
-
-        console.log("This is in props")
-        console.log(props)
     }
 
     componentWillMount = async () => {
@@ -47,31 +48,9 @@ class Contacts_List extends React.Component {
         }
     };
 
-
-    componentDidUpdate() {
-        // console.log(this.state.search_input)
-        // console.log(this.state.my_contacts)
-    }
-
-    // componentDidUpdate() {
-    //     console.log("Component DID update")
-    //     if (!this.state.loading_data) {
-    //         console.log("Component DID Update Running Functions")
-    //         const { my_contacts, search_input } = this.state
-    //         console.log(search_input)
-
-    //         const updated_contacts = my_contacts.filter(item => {
-    //             const itemData = `${item.name.toLowerCase()}`;
-    //             const textData = search_input.toLowerCase();
-    //             return itemData.indexOf(textData) > -1;
-    //         });
-
-    //         this.setState({my_contacts: updated_contacts})
-    //     }
-    // }
-
     render() {
         const { my_contacts } = this.state;
+        const {navigate} = this.props.navigation
         return (
             <View style={styles.container}>
                 {/* Large CONTACTS header */}
@@ -92,6 +71,13 @@ class Contacts_List extends React.Component {
                     />
                 </View>
 
+                <View>
+                    <Button
+                        title={"Add new Contact"}
+                        onPress={() => {navigate("Input_User", {action_type: 'CREATE', contact_obj: {} })}}
+                    />
+                </View>
+
                 {/* List of all contacts */}
                 <FlatList
                     data={my_contacts}
@@ -100,13 +86,6 @@ class Contacts_List extends React.Component {
                     }
                     style={styles.flat_list}
                 />
-
-                <View>
-                    <Button
-                        title={"Add new Contact"}
-                        onPress={() => { }}
-                    />
-                </View>
             </View>
         )
     }
@@ -116,4 +95,4 @@ class Contacts_List extends React.Component {
 //     contacts: state.contacts
 // })
 
-export default Contacts_List;
+export default connect(null)(withNavigation(Contacts_List));
