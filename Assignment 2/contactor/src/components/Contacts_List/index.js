@@ -82,6 +82,7 @@ class Contacts_List extends React.Component {
                         <Contact_List_Item contact={item} />
                     }
                     style={styles.flat_list}
+                    keyExtractor={(elem) => (elem.name)}
                 />
             </View>
         )

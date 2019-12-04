@@ -19,27 +19,24 @@ export default class Contact_Input extends React.Component {
 
     async componentWillMount() {
         this.setState(_state)
-
-        const _contact_object = await get_contact(this.props.contact_name + ".json") 
-
-
-        const obj = _contact_object//this.props.contact_obj
-        console.log("Object at willmount:")
-        console.log(obj)
-        // console.log(obj.contact.phoneNumbers[0].number)
-        if (obj.imageAvailable) {
-            this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: obj.image.uri })
-        }
-        else {
-            this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: '' })
+        if (!(this.props.contact_name === undefined)) {
+            const _contact_object = await get_contact(this.props.contact_name + ".json") 
+            
+            const obj = _contact_object//this.props.contact_obj
+            // console.log(obj.contact.phoneNumbers[0].number)
+            if (obj.imageAvailable) {
+                this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: obj.image.uri })
+            }
+            else {
+                this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: '' })
+            }
         }
     }
 
     async _submit_pressed() {
-        const obj = await get_contact(this.props.contact_name + ".json");
-        console.log("")
-        console.log(obj)
-        if (obj === 'undefined') {
+        
+        if (this.props.contact_name === undefined) {
+            const obj = {};
             console.log("I am undefined");
             obj.name = this.state.name;
             obj.imageAvailable = false;
@@ -47,17 +44,23 @@ export default class Contact_Input extends React.Component {
             obj.phoneNumbers[0].number = this.state.number;
             obj.phoneNumbers[0].label = 'mobile';
             obj.phoneNumbers[0].isPrimary = 0;
+            if (this.state.image.length > 0) {
+                if (!obj.imageAvailable) { obj.imageAvailable = true; }
+                obj.image = {};
+                obj.image.uri = this.state.image;
+            }
+            this.props._submit_function(obj);
         } else {
+            const obj = await get_contact(this.props.contact_name + ".json");
             obj.name = this.state.name;
             obj.phoneNumbers[0].number = this.state.number;
+            if (this.state.image.length > 0) {
+                if (!obj.imageAvailable) { obj.imageAvailable = true; }
+                obj.image = {};
+                obj.image.uri = this.state.image;
+            }
+            this.props._submit_function(obj);
         }
-        if (this.state.image.length > 0) {
-            if (!obj.imageAvailable) { obj.imageAvailable = true; }
-            obj.image = {};
-            obj.image.uri = this.state.image;
-        }
-
-        this.props._submit_function(obj);
     }
 
     /**
