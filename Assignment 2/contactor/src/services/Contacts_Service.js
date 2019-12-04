@@ -93,25 +93,6 @@ export async function remove_contact(name) {
     }
 }
 
-export async function set_image(contact, select) {
-    const uri  = '';
-    if(select) {
-        uri = await select_from_camera_roll();
-    } else {
-        uri = await take_photo();
-    }
-    console.log(uri);
-
-    if (uri.length > 0) {
-        contact.imageAvailable = true;
-        contact.image.uri = uri;
-    } else {
-        console.log("Error setting image");
-    }
-    await edit_contact(contact, contact)
-}
-
-
 // ------------ v2.0 - DEPRECATED
 // ------------ Contact service using AsyncStorage 
 

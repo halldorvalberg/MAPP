@@ -71,7 +71,7 @@ class Contacts_List extends React.Component {
                 <View>
                     <Button
                         title={"Add new Contact"}
-                        onPress={() => { navigate("Input_User", { action_type: 'CREATE', contact_obj: {} }) }}
+                        onPress={() => { navigate("Input_User", { action_type: 'CREATE', contact_obj: ''}) }}
                     />
                 </View>
 

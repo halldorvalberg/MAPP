@@ -21,7 +21,7 @@ export default class Contact_Input extends React.Component {
     async componentWillMount() {
         this.setState(_state)
         if (!(this.props.contact_name === undefined)) {
-            const _contact_object = await get_contact(this.props.contact_name + ".json") 
+            const obj = await get_contact(this.props.contact_name + ".json") 
             
             if (obj.imageAvailable) {
                 this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: obj.image.uri })
@@ -69,7 +69,7 @@ export default class Contact_Input extends React.Component {
         } else {
             uri = await take_photo();
         }
-        if (photo.length > 0) {
+        if (uri.length > 0) {
             this.setState({ image: uri });
         }
     }

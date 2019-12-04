@@ -13,7 +13,7 @@ class Input_User extends React.Component {
             contact_obj: {}
         }
 
-        // console.log(props)
+        console.log(props)
         // console.log(this.props.navigation.state.params.action_type)
     }
 
@@ -24,10 +24,13 @@ class Input_User extends React.Component {
         //console.log(_action_type)
         const _contact_name = this.props.navigation.state.params.name
         //console.log(_contact_name)
-        const _contact_object = await Contact_Service.get_contact(_contact_name + '.json');
+        let _contact_object = {};
+        if (_contact_name != undefined) {
+            _contact_object = await Contact_Service.get_contact(_contact_name + '.json');
+        }
 
-        console.log("_contact_object")
-        console.log(_contact_object)
+        //console.log("_contact_object")
+        //console.log(_contact_object)
 
         this.setState({ action_type: _action_type, contact_obj: _contact_object })
 
