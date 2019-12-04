@@ -1,6 +1,6 @@
 import React from 'react'
-import {View, TextInput , Button} from 'react-native'
-
+import {View, TextInput , Button, Text} from 'react-native'
+import styles from '../../style.js'
 
 export default class Contact_Input extends React.Component {
     constructor(props){
@@ -29,31 +29,36 @@ export default class Contact_Input extends React.Component {
     render() {
         const {name, number, image} = this.state
         return(
-            <View>
-                {/* Import Name */}
-                <View>
-                    <TextInput 
-                        onChangeText={text => this.setState({name: text})}
-                        value = {name}
-                    />
+            <View style={styles.container}>
+                <View style={styles.contact_list_header}>
+                    <Text style={{ fontSize: 40, fontWeight: 'bold' }}>EDIT CONTACT</Text>
                 </View>
-    
-                {/* Import Phone number */}
-
-                <View>
-                    <TextInput 
-                        onChangeText={text => this.setState({number: text})}
-                        value = {number}
-                    />
+                <View style={styles.edit_contact_form}>
+                    {/* Import Name */}
+                    <Text>Name:</Text>
+                    <View style={styles.search}>
+                        <TextInput 
+                            onChangeText={text => this.setState({name: text})}
+                            value = {name}
+                        />
+                    </View>
+        
+                    {/* Import Phone number */}
+                    <Text>Phone number:</Text>
+                    <View style={styles.search}>
+                        <TextInput 
+                            onChangeText={text => this.setState({number: text})}
+                            value = {number}
+                        />
+                    </View>
+        
+                    {/* Import Image */}
+                    <View>
+                        {/* IMPLEMENT ME!! */}
+                    </View>
                 </View>
-    
-                {/* Import Image */}
-                <View>
-                    {/* IMPLEMENT ME!! */}
-                </View>
-
                 {/* Submitt button that calls on _submit_pressed() function implemented in this class */}
-                <View>
+                <View style={styles.contact_buttons}>
                     <Button
                         title={
                             'Submit'

@@ -77,9 +77,9 @@ class Contacts_List extends React.Component {
                 </View>
 
                 {/* Search Bar */}
-                <View>
+                <View style={styles.search}>
                     <TextInput
-                        placeholder="Search here"
+                        placeholder="Search contacts"
                         onChangeText={text => {
                           this.filterList(text);
                         }}

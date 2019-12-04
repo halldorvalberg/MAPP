@@ -3,8 +3,28 @@ import { withOrientation } from 'react-navigation';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#eee',
+        backgroundColor: '#aaaaaa',
         height:'100%',
+    },
+
+    search: {
+        margin:10,
+        marginLeft:20,
+        marginRight:20,
+        borderWidth:1,
+        borderColor:'#dddddd',
+        borderRadius:10,
+        backgroundColor:'#ffffff',
+        paddingLeft:10,
+    },
+
+    edit_contact_form: {
+        borderWidth:1,
+        borderColor:'#dddddd',
+        borderRadius:10,
+        backgroundColor:'#ffffff',
+        margin:10,
+        padding:10
     },
 
     flat_list:{
@@ -69,8 +89,6 @@ const styles = StyleSheet.create({
     },
 
     contact_list_header:{
-        flex:1,
-        justifyContent:'center',
         marginLeft:'auto',
         marginRight:'auto',
         marginTop:20,
@@ -82,16 +100,6 @@ const styles = StyleSheet.create({
 
     },
 
-    //ATH BORDER ATTRIBUTES ERU GERÐ FYRIR VIEW
-    edit_contact_form: {
-        padding:'5%',
-        margin:'5%',
-        borderWidth:1,
-        borderColor:'#5e5e5e',
-        borderRadius:5,
-        margin:5,
-        elevation:10
-    },
 
     contact_buttons:{
         flex:1,
