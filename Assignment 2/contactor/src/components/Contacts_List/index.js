@@ -25,18 +25,10 @@ class Contacts_List extends React.Component {
         this.setState({ loading_data: true })
 
         console.log('Component Will Mount Loading_data: True')
-        const data = await Contact_Service.get_all_contacts();
-
-        if (data.length > 0) {
-            const contact = data;
-            contact.sort(function (a, b) {
-                if (a.name < b.name) { return -1; }
-                if (a.name > b.name) { return 1; }
-                return 0;
-            })
-            this.setState({ my_contacts: contact, loading_data: false })
-            console.log('Component Will Mount Loading_Data: flse')
-        }
+        const contacts = await Contact_Service.get_all_contacts();
+        this.setState({ my_contacts: contacts, loading_data: false })
+        console.log('Component Will Mount Loading_Data: flse')
+    
     };
 
     filterList = text => {
