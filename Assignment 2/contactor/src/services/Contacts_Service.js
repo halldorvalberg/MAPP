@@ -30,7 +30,7 @@ async function import_from_os() {
     try {
         await FileSystem.makeDirectoryAsync(dir_contacts);
     } catch {console.log("Directory already exists.")}
-    
+
     if(await get_permission())
     {
         // Contacts.getContactsAsync(contactQuery: ContactQuery)
@@ -48,7 +48,7 @@ export const edit_contact = async (_old, _new) => {
 
 export async function save_contact(contact) {
     const path = dir_contacts + contact.name + '.json';
-
+    
     await FileSystem.writeAsStringAsync(path, JSON.stringify(contact)); 
 }
 
@@ -102,7 +102,7 @@ export async function set_image(contact, select) {
     } else {
         console.log("Error setting image");
     }
-    await save_contact(contact)
+    await edit_contact(contact, contact)
 }
 
 
