@@ -24,7 +24,7 @@ class Input_User extends React.Component {
         //console.log(_action_type)
         const _contact_name = this.props.navigation.state.params.name
         //console.log(_contact_name)
-        const _contact_object = await Contact_Service.get_contact(_contact_name);
+        const _contact_object = await Contact_Service.get_contact(_contact_name + '.json');
 
         console.log("_contact_object")
         console.log(_contact_object)
