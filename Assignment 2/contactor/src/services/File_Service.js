@@ -1,45 +1,39 @@
 import * as FileSystem from 'expo-file-system';
-import {AsyncStorage} from 'react-native';
+import * as Permissions from 'expo-permissions';
+import * as MediaLibrary from 'expo-media-library'
 
-const dir_contacts = FileSystem.documentDirectory + "contacts/";
+const dir_contacts = FileSystem.documentDirectory + "conts/";
+
 
 export async function save_contact(contact) {
     try {
-        await AsyncStorage.setItem(contact.name, JSON.stringify(contact));
-    } catch(e) {
-        console.log("Error saving data: ", e.message);
-    }
+        await FileSystem.makeDirectoryAsync(dir_contacts);
+    } catch {console.log("Directory already exists.")}
+    const path = dir_contacts + contact.name + '.json';
+    await FileSystem.writeAsStringAsync(path, JSON.stringify(contact)); 
 }
 
 export const get_all_contacts = async () => {
     const contacts = [];
-    const keys = await AsyncStorage.getAllKeys();
+    const files = await FileSystem.readDirectoryAsync(dir_contacts);
+    let single = '';
 
-    console.log("Keys: ", keys);
-
-    let temp = '';
-
-    for ( i = 0; i < keys.length; i++) {
-        temp = await get_contact(keys[i]);
-        contacts.push(JSON.parse(temp));
+    for(i = 0; i < files.length;i++) {
+        single = await get_contact(files[i]);
+        contacts.push(JSON.parse(single));
     };
     return contacts;
 }
 
 export const get_contact = async(name) => {
-    let contact = '';
-    try {
-        contact = await AsyncStorage.getItem(name);
-    } catch(e) {
-        console.log("Error getting data: ", e.message);
-    }
-    return contact;
+    const contact = await FileSystem.readAsStringAsync(dir_contacts + name + '.json');
+    return JSON.parse(contact);
 }
 
-export async function remove_contact(name) {
+export async function remove_contact() {
     try {
-        await AsyncStorage.removeItem(name);
+        await Filesystem.deleteAsync(dir_contacts + name + '.json');
     } catch(e) {
-        console.log("Error removing data: ", e.message);
+        console.log("Error: Directory/File does not exist " + e);
     }
 }

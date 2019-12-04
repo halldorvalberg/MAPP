@@ -62,8 +62,9 @@ export default class Contact_Input extends React.Component {
                             value = {number}
                         />
                     </View>
-        
-                    {/* Import Image */}
+                        <TouchableHighlight>
+                            <Icon reverse name='device-camera' type='octicon' />
+                        </TouchableHighlight>
                     <View>
                         {/* IMPLEMENT ME!! */}
                     </View>

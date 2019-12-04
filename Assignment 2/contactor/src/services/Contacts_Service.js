@@ -2,12 +2,7 @@ import * as Contacts from 'expo-contacts';
 import * as Permissions from 'expo-permissions';
 import * as FileSystem from 'expo-file-system';
 
-import {AsyncStorage, Platform} from 'react-native';
-
 import {select_from_camera_roll, take_photo} from './Image_Service';
-
-// import {save_contact, get_all_contacts} from './File_Service.js';
-// import * as FS from './File_Service.js'
 
 // ------------ v3.0
 // ------------ Contact service using FileSystem
@@ -32,6 +27,10 @@ async function get_permission_camera() {
 }
 
 async function import_from_os() {
+    try {
+        await FileSystem.makeDirectoryAsync(dir_contacts);
+    } catch {console.log("Directory already exists.")}
+    
     if(await get_permission())
     {
         // Contacts.getContactsAsync(contactQuery: ContactQuery)
@@ -42,11 +41,12 @@ async function import_from_os() {
     }
 }
 
-export async function save_contact(contact) {
-    try {
-        await FileSystem.makeDirectoryAsync(dir_contacts);
-    } catch {console.log("Directory already exists.")}
+export const edit_contact = async (_old, _new) => {
+    remove_contact(_old);
+    save_contact(_new);
+}
 
+export async function save_contact(contact) {
     const path = dir_contacts + contact.name + '.json';
 
     await FileSystem.writeAsStringAsync(path, JSON.stringify(contact)); 
@@ -63,6 +63,12 @@ export const get_all_contacts = async () => {
         single = await get_contact(files[i]);
         contacts.push(single);
     };
+
+    contacts.sort(function (a, b) {
+        if (a.name < b.name) { return -1; }
+        if (a.name > b.name) { return 1; }
+        return 0;
+    });
 
     return contacts;
 }
@@ -102,6 +108,8 @@ export async function set_image(contact, select) {
 
 // ------------ v2.0 - DEPRECATED
 // ------------ Contact service using AsyncStorage 
+
+// import {AsyncStorage, Platform} from 'react-native';
 
 // async function _get_permission() {
 //     const status = await Permissions.askAsync(Permissions.CONTACTS);
