@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TextInput } from 'react-native'
+import { Text, View, TextInput, Button } from 'react-native'
 import { FlatList } from "react-native-gesture-handler";
 import styles from '../../style.js'
 
@@ -15,7 +15,10 @@ class Contacts_List extends React.Component {
             loading_data: false,
             my_contacts: [],
             search_input: ''
-            }
+        }
+
+        console.log("This is in props")
+        console.log(props)
     }
 
     componentWillMount = async () => {
@@ -29,18 +32,26 @@ class Contacts_List extends React.Component {
     };
 
     filterList = text => {
-        var newData = this.state.dataBackup;
-        newData = this.state.dataBackup.filter(item => {
-          const itemData = item.name.toLowerCase();
-          const textData = text.toLowerCase();
-          return itemData.indexOf(textData) > -1;
-        });
-        this.setState({
-          query: text,
-          dataSource: newData
-        });
-      };
-    
+        const loading = this.state.loading_data
+        if (!loading) {
+            var newData = this.state.my_contacts;
+            newData = this.state.my_contacts.filter(item => {
+                const itemData = item.name.toLowerCase();
+                const textData = text.toLowerCase();
+                return itemData.indexOf(textData) > -1;
+            });
+            this.setState({
+                search_input: text,
+                my_contacts: newData
+            });
+        }
+    };
+
+
+    componentDidUpdate() {
+        // console.log(this.state.search_input)
+        // console.log(this.state.my_contacts)
+    }
 
     // componentDidUpdate() {
     //     console.log("Component DID update")
@@ -73,10 +84,10 @@ class Contacts_List extends React.Component {
                     <TextInput
                         placeholder="Search contacts"
                         onChangeText={text => {
-                          this.filterList(text);
+                            this.filterList(text);
                         }}
                         onPressCancel={() => {
-                          this.filterList("");
+                            this.filterList("");
                         }}
                     />
                 </View>
@@ -89,6 +100,13 @@ class Contacts_List extends React.Component {
                     }
                     style={styles.flat_list}
                 />
+
+                <View>
+                    <Button
+                        title={"Add new Contact"}
+                        onPress={() => { }}
+                    />
+                </View>
             </View>
         )
     }

@@ -27,7 +27,7 @@ const Contact_List_Item = ({ contact, navigation: {navigate} }) => {
                 {/* <Image source={{ uri: contact.image }}
                     resizeMode="cover"
                     style={styles.flat_list_item_image} /> */}
-                <Text style={styles.flat_list_item_text}> {contact.name} </Text>
+                <Text style={styles.flat_list_item_text} ellipsizeMode='tail'> {contact.name} </Text>
             </View>
         </TouchableOpacity>
     )

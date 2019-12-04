@@ -43,7 +43,7 @@ class Contact_Detail extends React.Component {
                         />
                     <Button
                         title={'Edit'}
-                        onPress={() => navigate('Input_User', {action_type: 'UPDATE', contact_obj: contact})}
+                        onPress={() => navigate('Input_User', {action_type: 'UPDATE', contact_obj: {contact}})}
                     />
                 </View>
             </View>

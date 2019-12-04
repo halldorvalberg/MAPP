@@ -75,7 +75,7 @@ export const get_all_contacts = async () => {
 
 export const get_contact = async(name) => {
     const contact = await FileSystem.readAsStringAsync(dir_contacts + name);
-    console.log(contact);
+    // console.log(contact);
     return JSON.parse(contact);
 }
 

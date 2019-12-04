@@ -3,6 +3,8 @@ import { View } from 'react-native'
 
 import Contact_Input from '../../components/Contact_Input'
 
+import * as Contact_Service from '../../services/Contacts_Service'
+
 class Input_User extends React.Component {
     constructor(props) {
         super(props)
@@ -20,11 +22,11 @@ class Input_User extends React.Component {
 
         if(action_type === 'UPDATE')
         {
-            //UPDATE USING OBJ
+            
         }
         else
         {
-            //CREATE NEW OBJ USING OBJ
+            Contact_Service.save_contact(object)
         }
     }
     render() {
