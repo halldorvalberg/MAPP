@@ -4,6 +4,7 @@ import { Icon } from 'react-native-elements'
 import styles from '../../style.js'
 
 import { get_contact } from '../../services/Contacts_Service'
+import { select_from_camera_roll, take_photo } from '../../services/Image_Service'
 
 const _state = {
     name: '',
@@ -63,6 +64,18 @@ export default class Contact_Input extends React.Component {
         }
     }
 
+    async set_image(select) {
+        let uri = '';
+        if(select) {
+            uri = await select_from_camera_roll();
+        } else {
+            uri = await take_photo();
+        }
+        if (photo.length > 0) {
+            this.setState({ image: uri });
+        }
+    }
+
     /**
      * TODO 
      * Crashes if object has null as image
@@ -93,9 +106,14 @@ export default class Contact_Input extends React.Component {
                             value={number}
                         />
                     </View>
-                    <TouchableHighlight>
-                        <Icon reverse name='device-camera' type='octicon' />
-                    </TouchableHighlight>
+                    <View>
+                        <TouchableHighlight>
+                            <Icon raised name='md-image' type='ionicon' onPress={() => this.set_image(true)}/>
+                        </TouchableHighlight>
+                        <TouchableHighlight>
+                            <Icon raised name='md-camera' type='ionicon' onPress={() => this.set_image(false)}/>
+                        </TouchableHighlight>
+                    </View>
                     <View>
                         {/* IMPLEMENT ME!! */}
                     </View>
