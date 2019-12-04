@@ -20,40 +20,41 @@ export default class Contact_Input extends React.Component {
     async componentWillMount() {
         this.setState(_state)
 
-        const _contact_object = await get_contact(this.props.contact_name+".json") 
+        const _contact_object = await get_contact(this.props.contact_name + ".json") 
 
 
         const obj = _contact_object//this.props.contact_obj
+        console.log("Object at willmount:")
         console.log(obj)
         // console.log(obj.contact.phoneNumbers[0].number)
-        if (obj.contact.imageAvailable) {
-            this.setState({ name: obj.contact.name, number: obj.contact.phoneNumbers[0].number, image: obj.contact.image.uri })
+        if (obj.imageAvailable) {
+            this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: obj.image.uri })
         }
         else {
-            this.setState({ name: obj.contact.name, number: obj.contact.phoneNumbers[0].number, image: '' })
+            this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: '' })
         }
     }
 
     async _submit_pressed() {
-        const obj = await get_contact(this.props.contact_name+".json");
+        const obj = await get_contact(this.props.contact_name + ".json");
+        console.log("")
         console.log(obj)
         if (obj === 'undefined') {
             console.log("I am undefined");
-            obj.contact = {};
-            obj.contact.name = this.state.name;
-            obj.contact.imageAvailable = false;
-            obj.contact.phoneNumbers = [{}];
-            obj.contact.phoneNumbers[0].number = this.state.number;
-            obj.contact.phoneNumbers[0].label = 'mobile';
-            obj.contact.phoneNumbers[0].isPrimary = 0;
+            obj.name = this.state.name;
+            obj.imageAvailable = false;
+            obj.phoneNumbers = [{}];
+            obj.phoneNumbers[0].number = this.state.number;
+            obj.phoneNumbers[0].label = 'mobile';
+            obj.phoneNumbers[0].isPrimary = 0;
         } else {
-            obj.contact.name = this.state.name;
-            obj.contact.phoneNumbers[0].number = this.state.number;
+            obj.name = this.state.name;
+            obj.phoneNumbers[0].number = this.state.number;
         }
         if (this.state.image.length > 0) {
-            if (!obj.contact.imageAvailable) { obj.contact.imageAvailable = true; }
-            obj.contact.image = {};
-            obj.contact.image.uri = this.state.image;
+            if (!obj.imageAvailable) { obj.imageAvailable = true; }
+            obj.image = {};
+            obj.image.uri = this.state.image;
         }
 
         this.props._submit_function(obj);

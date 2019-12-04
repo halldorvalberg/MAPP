@@ -40,7 +40,7 @@ class Input_User extends React.Component {
         const { action_type, contact_obj } = this.state
 
         if (action_type === 'UPDATE') {
-            Contact_Service.edit_contact(contact, object)
+            Contact_Service.edit_contact(contact_obj, object)
         }
         else {
             Contact_Service.save_contact(object)
