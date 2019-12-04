@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, TextInput, Button, Text } from 'react-native'
+import {View, TextInput , Button, Text, TouchableHighlight} from 'react-native'
+import {Icon} from 'react-native-elements'
 import styles from '../../style.js'
 
 const _state = {
@@ -29,12 +30,27 @@ export default class Contact_Input extends React.Component {
     }
 
     _submit_pressed() {
-        const obj = this.props.contact_obj
-        obj.contact.name = this.state.name
-        obj.contact.phoneNumbers[0].number = this.state.number
-        //obj.contact.image.uri = this.state.image
-        // console.log(obj)
-        this.props._submit_function(obj)
+        const obj = this.props.contact_obj;
+        if (obj === 'undefined') {
+            console.log("I am undefined");
+            obj.contact = {};
+            obj.contact.name = this.state.name;
+            obj.contact.imageAvailable = false;
+            obj.contact.phoneNumbers = [{}];
+            obj.contact.phoneNumbers[0].number = this.state.number;
+            obj.contact.phoneNumbers[0].label = 'mobile';
+            obj.contact.phoneNumbers[0].isPrimary = 0;
+        } else {
+            obj.contact.name = this.state.name;
+            obj.contact.phoneNumbers[0].number = this.state.number;
+        }
+        if (this.state.image.length > 0) {
+            if (!obj.contact.imageAvailable) {obj.contact.imageAvailable = true;}
+            obj.contact.image = {};
+            obj.contact.image.uri = this.state.image;
+        }
+
+        this.props._submit_function(obj);
     }
 
     /**
