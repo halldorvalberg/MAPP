@@ -35,6 +35,7 @@ class Contact_Detail extends React.Component {
 
                 <View style={styles.contact_buttons}>
                     <Button
+                            color='green'
                             title={'Call'}
                             onPress={() => Linking.openURL('tel:' + contact.phoneNumbers[0].number)}
 
