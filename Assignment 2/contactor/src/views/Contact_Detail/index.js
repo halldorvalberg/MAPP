@@ -9,6 +9,7 @@ class Contact_Detail extends React.Component {
     }
     render() {
         const { contact } = this.props.navigation.state.params;
+        const {navigate} = this.props.navigation
         return (
             // Spurning að henda eftirfarandi virkni í component. Gæti verið meira nice
             <View style={styles.container}>
@@ -28,7 +29,7 @@ class Contact_Detail extends React.Component {
                         {contact.name}
                     </Text>
                     <Text>
-                        {contact.phoneNumbers[0].number}
+                        {contact.phoneNumbers != undefined? contact.phoneNumbers[0].number : <></>}
                     </Text>
                         
                 </View>
@@ -41,7 +42,7 @@ class Contact_Detail extends React.Component {
                         />
                     <Button
                         title={'Edit'}
-                        onPress={() => Alert.alert('Here we will put the edit functionality')}
+                        onPress={() => navigate('Input_User', {action_type: 'UPDATE', contact_obj: contact})}
                     />
                 </View>
             </View>
