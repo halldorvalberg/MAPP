@@ -22,8 +22,6 @@ export default class Contact_Input extends React.Component {
         if (!(this.props.contact_name === undefined)) {
             const _contact_object = await get_contact(this.props.contact_name + ".json") 
             
-            const obj = _contact_object//this.props.contact_obj
-            // console.log(obj.contact.phoneNumbers[0].number)
             if (obj.imageAvailable) {
                 this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: obj.image.uri })
             }
