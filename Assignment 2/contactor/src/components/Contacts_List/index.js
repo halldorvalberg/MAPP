@@ -69,13 +69,6 @@ class Contacts_List extends React.Component {
                         />
                     </View>
 
-                    <View>
-                        <Button
-                            title={"Add new Contact"}
-                            onPress={() => { navigate("Input_User", { action_type: 'CREATE', contact_obj: '' }) }}
-                        />
-                    </View>
-
                     {/* List of all contacts */}
                     <FlatList
                         data={my_contacts}
@@ -88,7 +81,7 @@ class Contacts_List extends React.Component {
 
                 </ScrollView>
 
-                <View style={styles.contact_buttons}>
+                <View>
                     <Button
                         title={"Add new Contact"}
                         onPress={() => { navigate("Input_User", { action_type: 'CREATE', contact_obj: '' }) }}
