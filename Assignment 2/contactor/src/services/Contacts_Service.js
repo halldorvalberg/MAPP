@@ -36,6 +36,8 @@ async function import_from_os() {
         // Contacts.getContactsAsync(contactQuery: ContactQuery)
         const contacts = await Contacts.getContactsAsync({});
 
+        contacts.data.forEach(item => console.log(item.name))
+        
         // Save each contact to AsyncStorage
         contacts.data.forEach(save_contact);
     }

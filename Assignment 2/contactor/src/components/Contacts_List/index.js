@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TextInput, Button } from 'react-native'
+import { Text, View, TextInput, Button, ScrollView } from 'react-native'
 import { FlatList } from "react-native-gesture-handler";
 import styles from '../../style.js'
 
@@ -53,37 +53,47 @@ class Contacts_List extends React.Component {
         const { navigate } = this.props.navigation
         return (
             <View style={styles.container}>
-                {/* Large CONTACTS header */}
-                <View style={styles.contact_list_header}>
-                    <Text style={{ fontSize: 40, fontWeight: 'bold' }}>CONTACTS</Text>
-                </View>
+                <ScrollView>
+                    {/* Large CONTACTS header */}
+                    <View style={styles.contact_list_header}>
+                        <Text style={{ fontSize: 40, fontWeight: 'bold' }}>CONTACTS</Text>
+                    </View>
 
-                {/* Search Bar */}
-                <View style={styles.search}>
-                    <TextInput
-                        placeholder="Search contacts"
-                        onChangeText={text => {
-                            this.filterList(text);
-                        }}
+                    {/* Search Bar */}
+                    <View style={styles.search}>
+                        <TextInput
+                            placeholder="Search contacts"
+                            onChangeText={text => {
+                                this.filterList(text);
+                            }}
+                        />
+                    </View>
+
+                    <View>
+                        <Button
+                            title={"Add new Contact"}
+                            onPress={() => { navigate("Input_User", { action_type: 'CREATE', contact_obj: '' }) }}
+                        />
+                    </View>
+
+                    {/* List of all contacts */}
+                    <FlatList
+                        data={my_contacts}
+                        renderItem={({ item }) =>
+                            <Contact_List_Item contact={item} />
+                        }
+                        style={styles.flat_list}
+                        keyExtractor={(elem) => (`${elem.phoneNumbers}.${elem.name}`)}
                     />
-                </View>
+
+                </ScrollView>
 
                 <View>
                     <Button
                         title={"Add new Contact"}
-                        onPress={() => { navigate("Input_User", { action_type: 'CREATE', contact_obj: ''}) }}
+                        onPress={() => { navigate("Input_User", { action_type: 'CREATE', contact_obj: '' }) }}
                     />
                 </View>
-
-                {/* List of all contacts */}
-                <FlatList
-                    data={my_contacts}
-                    renderItem={({ item }) =>
-                        <Contact_List_Item contact={item} />
-                    }
-                    style={styles.flat_list}
-                    keyExtractor={(elem) => (`${elem.phoneNumbers}.${elem.name}`)}
-                />
             </View>
         )
     }
