@@ -3,7 +3,7 @@ import { withOrientation } from 'react-navigation';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#aaaaaa',
+        backgroundColor: '#efefef',
         height:'100%',
     },
 
@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
         borderRadius:10,
         backgroundColor:'#ffffff',
         margin:10,
-        padding:10
+        padding:10,
+        height:230
     },
 
     flat_list:{

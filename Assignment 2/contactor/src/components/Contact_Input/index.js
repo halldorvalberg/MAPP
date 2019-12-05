@@ -104,16 +104,13 @@ export default class Contact_Input extends React.Component {
                             value={number}
                         />
                     </View>
-                    <View>
+                    <View style={{flex:1, flexDirection:'row', justifyContent:'space-around'}}>
                         <TouchableHighlight>
                             <Icon raised name='md-image' type='ionicon' onPress={() => this.set_image(true)}/>
                         </TouchableHighlight>
                         <TouchableHighlight>
                             <Icon raised name='md-camera' type='ionicon' onPress={() => this.set_image(false)}/>
                         </TouchableHighlight>
-                    </View>
-                    <View>
-                        {/* IMPLEMENT ME!! */}
                     </View>
                 </View>
                 {/* Submitt button that calls on _submit_pressed() function implemented in this class */}
