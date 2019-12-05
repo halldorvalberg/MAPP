@@ -57,35 +57,35 @@ class Contact_Detail extends React.Component {
         return (
             // Spurning að henda eftirfarandi virkni í component. Gæti verið meira nice
             <View style={styles.container}>
-                {" "}
-                {contact.imageAvailable ? (
-                    <Image
-                        source={{
-                            uri: contact.image.uri
-                        }}
-                        resizeMode="cover"
-                        style={styles.contact_image}
-                    />
-                ) : (
+
+                {
+                    contact.imageAvailable
+                        ?
+
+                        <Image
+                            source={{
+                                uri: contact.image.uri
+                            }}
+                            resizeMode="cover"
+                            style={styles.contact_image}
+                        />
+                        :
                         <Text> </Text>
-                    )}{" "}
-                <View style={styles.contact_details}>
-                    <Text
-                        style={{
-                            fontWeight: "bold",
-                            fontSize: 20
-                        }}
-                    >
-                        {" "}
-                        {contact.name}{" "}
-                    </Text>{" "}
+
+                }
+                < View style={styles.contact_details}>
+                    <Text style={{ fontWeight: "bold", fontSize: 20 }} >
+                        {contact.name}
+                    </Text>
                     <Text>
-                        {" "}
-                        {contact.phoneNumbers != undefined ? (
-                            contact.phoneNumbers[0].number
-                        ) : (
+                        {
+                            contact.phoneNumbers != undefined
+                                ?
+
+                                contact.phoneNumbers[0].number
+                                :
                                 <> </>
-                            )}{" "}
+                        }
                     </Text>
                 </View>
                 <View style={styles.contact_buttons}>
@@ -95,7 +95,7 @@ class Contact_Detail extends React.Component {
                         onPress={() =>
                             Linking.openURL("tel:" + contact.phoneNumbers[0].number)
                         }
-                    />{" "}
+                    />
                     <Button
                         title={"Edit"}
                         onPress={() =>
@@ -104,9 +104,9 @@ class Contact_Detail extends React.Component {
                                 name: contact.name
                             })
                         }
-                    />{" "}
-                </View>{" "}
-            </View>
+                    />
+                </View>
+            </View >
         );
     }
 }

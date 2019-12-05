@@ -114,4 +114,4 @@ class Contacts_List extends React.Component {
     }
 }
 
-export default (withNavigation(Contacts_List);
+export default withNavigation(Contacts_List)
