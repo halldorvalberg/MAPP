@@ -104,20 +104,13 @@ export default class Contact_Input extends React.Component {
                             value={number}
                         />
                     </View>
-<<<<<<< HEAD
-                    <View style={{flex1, flexDirection:'row', justifyContent:'space-around'}}>
-=======
                     <View>
->>>>>>> 1a0016f54c264c7f36f99809e84f57679d16b67f
                         <TouchableHighlight>
                             <Icon raised name='md-image' type='ionicon' onPress={() => this.set_image(true)}/>
                         </TouchableHighlight>
-<<<<<<< HEAD
-=======
                         <TouchableHighlight>
                             <Icon raised name='md-camera' type='ionicon' onPress={() => this.set_image(false)}/>
                         </TouchableHighlight>
->>>>>>> 1a0016f54c264c7f36f99809e84f57679d16b67f
                     </View>
                     <View>
                         {/* IMPLEMENT ME!! */}
