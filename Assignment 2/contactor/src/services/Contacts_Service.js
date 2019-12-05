@@ -2,7 +2,7 @@ import * as Contacts from 'expo-contacts';
 import * as Permissions from 'expo-permissions';
 import * as FileSystem from 'expo-file-system';
 
-import {select_from_camera_roll, take_photo} from './Image_Service';
+import { select_from_camera_roll, take_photo } from './Image_Service';
 
 // ------------ v3.0
 // ------------ Contact service using FileSystem
@@ -14,7 +14,7 @@ async function get_permission() {
     if (status.status != 'granted') {
         console.log("ERROR in permissions - status: ", status)
         return false;
-    } 
+    }
     return true;
 }
 async function get_permission_camera() {
@@ -22,42 +22,37 @@ async function get_permission_camera() {
     if (status.status != 'granted') {
         console.log("ERROR in permissions - status: ", status)
         return false;
-    } 
+    }
     return true;
 }
 
 async function import_from_os() {
     try {
         await FileSystem.makeDirectoryAsync(dir_contacts);
-    } catch {console.log("Directory already exists.")}
+    } catch { console.log("Directory already exists.") }
 
-    if(await get_permission())
-    {
+    if (await get_permission()) {
         // Contacts.getContactsAsync(contactQuery: ContactQuery)
         const contacts = await Contacts.getContactsAsync({});
 
-        contacts.data.forEach(item => console.log(item.name))
-        
+        // contacts.data.forEach(item => console.log(item.name))
+
         // Save each contact to AsyncStorage
         contacts.data.forEach(save_contact);
     }
 }
 
 export const edit_contact = async (_old, _new) => {
-    console.log("_old.name")
-    console.log(_old.name)
-    console.log("_new")
-    console.log(_new)
     await remove_contact(_old.name);
     await save_contact(_new);
     const files = await FileSystem.readDirectoryAsync(dir_contacts);
-    console.log(files);
+    // console.log(files);
 }
 
 export async function save_contact(contact) {
     const path = dir_contacts + contact.name + '.json';
-    
-    await FileSystem.writeAsStringAsync(path, JSON.stringify(contact)); 
+
+    await FileSystem.writeAsStringAsync(path, JSON.stringify(contact));
 }
 
 export const get_all_contacts = async () => {
@@ -67,7 +62,7 @@ export const get_all_contacts = async () => {
     const files = await FileSystem.readDirectoryAsync(dir_contacts);
     let single = '';
 
-    for(i = 0; i < files.length;i++) {
+    for (i = 0; i < files.length; i++) {
         single = await get_contact(files[i]);
         contacts.push(single);
     };
@@ -81,7 +76,7 @@ export const get_all_contacts = async () => {
     return contacts;
 }
 
-export const get_contact = async(name) => {
+export const get_contact = async (name) => {
     const contact = await FileSystem.readAsStringAsync(dir_contacts + name);
     // console.log(contact);
     return JSON.parse(contact);
@@ -90,7 +85,7 @@ export const get_contact = async(name) => {
 export async function remove_contact(name) {
     try {
         await FileSystem.deleteAsync(dir_contacts + name + '.json');
-    } catch(e) {
+    } catch (e) {
         console.log("Error: Directory/File does not exist " + e);
     }
 }
@@ -110,7 +105,7 @@ export async function remove_contact(name) {
 //         console.log("ERROR in permissions - status: ", status)
 //         return -1;
 //     } 
-    
+
 //     // Contacts.getContactsAsync(contactQuery: ContactQuery)
 //     const data = await Contacts.getContactsAsync({});
 
@@ -167,7 +162,7 @@ export async function remove_contact(name) {
 //     if (get_permission() != 'granted') {
 //         return -1;
 //     } 
-    
+
 //     // Contacts.getContactByIdAsync(contactId: string, fields: FieldType[])
 //     const data = await Contacts.getContactByIdAsync(id);
 //     return data;
@@ -177,7 +172,7 @@ export async function remove_contact(name) {
 //     if (get_permission() != 'granted') {
 //         return -1;
 //     } 
-    
+
 //     // const contact = {
 //     //     [Contacts.Fields.FirstName]: 'Bird',
 //     //     [Contacts.Fields.LastName]: 'Man',
@@ -191,7 +186,7 @@ export async function remove_contact(name) {
 //     if (get_permission() != 'granted') {
 //         return -1;
 //     } 
-    
+
 //     // const contact = {
 //     //     id: '161A368D-D614-4A15-8DC6-665FDBCFAE55',
 //     //     [Contacts.Fields.FirstName]: 'Drake',

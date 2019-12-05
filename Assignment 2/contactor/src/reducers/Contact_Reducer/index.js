@@ -1,9 +1,8 @@
 export default (state = {}, action) => {
-    const new_state = {...state};
-    const {type, payload} = action
-    switch(type) {
+    const new_state = { ...state };
+    const { type, payload } = action
+    switch (type) {
         default: {
-            console.log(state)
             return state;
         }
     }

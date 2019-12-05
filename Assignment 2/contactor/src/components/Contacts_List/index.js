@@ -22,25 +22,23 @@ class Contacts_List extends React.Component {
             unfiltered_contacts: [],
             search_input: ''
         }
-
-        this.t = setInterval(() => {
-            this.setState({ count: this.state.count + 1 });
-        }, 1000);
     }
 
     componentWillMount = async () => {
         this.setState({ loading_data: true })
         const contacts = await Contact_Service.get_all_contacts();
         this.setState({ my_contacts: contacts, unfiltered_contacts: contacts, loading_data: false })
-
     };
 
-    componentDidMount() {
-        const { navigation } = this.props;
-        this.focusListener = navigation.addListener('didFocus', () => {
-            this.setState({ count: 0 });
-        });
-    }
+    _refresh = async () => {
+        const loading = this.state.loading_data
+        if (!loading) {
+            console.log("This is running")
+            this.setState({ loading_data: true })
+            const contacts = await Contact_Service.get_all_contacts();
+            this.setState({ my_contacts: contacts, unfiltered_contacts: contacts, loading_data: false })
+        }
+    };
 
     componentWillUnmount() {
         this.focusListener.remove();
@@ -86,6 +84,13 @@ class Contacts_List extends React.Component {
                         />
                     </View>
 
+                    <View>
+                        <Button
+                            title={'Refresh Contacts'}
+                            onPress={() => this._refresh()}
+                        />
+                    </View>
+
                     {/* List of all contacts */}
                     <FlatList
                         data={my_contacts}
@@ -109,8 +114,4 @@ class Contacts_List extends React.Component {
     }
 }
 
-// const mapStateToProps = (state) => ({
-//     contacts: state.contacts
-// })
-
-export default connect(null)(withNavigation(Contacts_List));
+export default (withNavigation(Contacts_List);

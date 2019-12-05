@@ -5,7 +5,7 @@ import styles from '../../style.js'
 
 import { get_contact } from '../../services/Contacts_Service'
 import { select_from_camera_roll, take_photo } from '../../services/Image_Service'
-import { withNavigation } from 'react-navigation'
+import { withNavigation, NavigationActions } from 'react-navigation'
 
 const _state = {
     name: '',
@@ -60,7 +60,6 @@ class Contact_Input extends React.Component {
             }
             this.props._submit_function(obj);
         }
-        console.log('I got here')
     }
 
     async set_image(select) {
@@ -75,10 +74,7 @@ class Contact_Input extends React.Component {
         }
     }
 
-    /**
-     * TODO 
-     * Crashes if object has null as image
-     */
+
 
     render() {
         const { name, number, image } = this.state
@@ -87,7 +83,6 @@ class Contact_Input extends React.Component {
             <View style={styles.container}>
 
                 {
-
                     this.props.action_type == 'UPDATE'
                         ?
 
@@ -98,7 +93,6 @@ class Contact_Input extends React.Component {
                         <View style={styles.contact_list_header}>
                             <Text style={{ fontSize: 40, fontWeight: 'bold' }}>CREATE CONTACT</Text>
                         </View>
-
                 }
 
                 <View style={styles.edit_contact_form}>
@@ -134,7 +128,7 @@ class Contact_Input extends React.Component {
                         title={
                             'Submit'
                         }
-                        onPress={() => { this._submit_pressed(), console.log(this.state.name), this.props.navigation.reset([NavigationActions.navigate('Contact_Detail', { name: this.state.name })], 0); }}
+                        onPress={() => { this._submit_pressed(), navigate('Contact_Detail', { name: this.state.name }) }}
                     />
                 </View>
             </View>

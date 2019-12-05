@@ -6,7 +6,7 @@ const getPermission = async permissionTypes => {
 };
 
 export const select_from_camera_roll = async () => {
-    await getPermission([ Permissions.CAMERA_ROLL ]);
+    await getPermission([Permissions.CAMERA_ROLL]);
     const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         quality: .8,
@@ -19,7 +19,7 @@ export const select_from_camera_roll = async () => {
 };
 
 export const take_photo = async () => {
-    await getPermission([ Permissions.CAMERA, Permissions.CAMERA_ROLL ]);
+    await getPermission([Permissions.CAMERA, Permissions.CAMERA_ROLL]);
     const result = await ImagePicker.launchCameraAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         quality: .8,
