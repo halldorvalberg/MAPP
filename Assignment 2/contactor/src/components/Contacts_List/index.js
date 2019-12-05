@@ -3,7 +3,7 @@ import { Text, View, TextInput, Button } from 'react-native'
 import { FlatList } from "react-native-gesture-handler";
 import styles from '../../style.js'
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 
 
@@ -18,29 +18,29 @@ class Contacts_List extends React.Component {
         this.state = {
             loading_data: false,
             my_contacts: [],
+            unfiltered_contacts: [],
             search_input: ''
         }
     }
 
     componentWillMount = async () => {
         this.setState({ loading_data: true })
-
-        console.log('Component Will Mount Loading_data: True')
         const contacts = await Contact_Service.get_all_contacts();
-        this.setState({ my_contacts: contacts, loading_data: false })
-        console.log('Component Will Mount Loading_Data: flse')
-    
+        this.setState({ my_contacts: contacts, unfiltered_contacts: contacts, loading_data: false })
+
     };
 
     filterList = text => {
         const loading = this.state.loading_data
         if (!loading) {
-            var newData = this.state.my_contacts;
-            newData = this.state.my_contacts.filter(item => {
+            var newData = this.state.unfiltered_contacts;
+            newData.forEach(item => console.log(item.name))
+            newData = this.state.unfiltered_contacts.filter(item => {
                 const itemData = item.name.toLowerCase();
                 const textData = text.toLowerCase();
                 return itemData.indexOf(textData) > -1;
             });
+
             this.setState({
                 search_input: text,
                 my_contacts: newData
@@ -50,7 +50,7 @@ class Contacts_List extends React.Component {
 
     render() {
         const { my_contacts } = this.state;
-        const {navigate} = this.props.navigation
+        const { navigate } = this.props.navigation
         return (
             <View style={styles.container}>
                 {/* Large CONTACTS header */}
@@ -65,16 +65,13 @@ class Contacts_List extends React.Component {
                         onChangeText={text => {
                             this.filterList(text);
                         }}
-                        onPressCancel={() => {
-                            this.filterList("");
-                        }}
                     />
                 </View>
 
                 <View style={styles.contact_buttons}>
                     <Button
                         title={"Add new Contact"}
-                        onPress={() => {navigate("Input_User", {action_type: 'CREATE', contact_obj: {} })}}
+                        onPress={() => { navigate("Input_User", { action_type: 'CREATE', contact_obj: ''}) }}
                     />
                 </View>
 
@@ -85,6 +82,7 @@ class Contacts_List extends React.Component {
                         <Contact_List_Item contact={item} />
                     }
                     style={styles.flat_list}
+                    keyExtractor={(elem) => (`${elem.phoneNumbers}.${elem.name}`)}
                 />
             </View>
         )

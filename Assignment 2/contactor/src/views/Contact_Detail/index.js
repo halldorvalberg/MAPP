@@ -15,18 +15,14 @@ class Contact_Detail extends React.Component {
     }
 
     async componentWillMount() {
-        console.log("this.props.navigation.state.params.name")
-        console.log(this.props.navigation.state.params.name)
         const _contact = await get_contact(this.props.navigation.state.params.name + ".json")
-        console.log("_contact")
-        console.log(_contact)
         this.setState({contact: _contact})
+        console.log(_contact)
     }
 
     render() {
         const { contact } = this.state;
         const { navigate } = this.props.navigation
-        console.log(contact)
         return (
             // Spurning að henda eftirfarandi virkni í component. Gæti verið meira nice
             <View style={styles.container}>
@@ -60,7 +56,7 @@ class Contact_Detail extends React.Component {
                     />
                     <Button
                         title={'Edit'}
-                        onPress={() => navigate('Input_User', { action_type: 'UPDATE', contact_obj: { contact } })}
+                        onPress={() => navigate('Input_User', { action_type: 'UPDATE', name: contact.name })}
                     />
                 </View>
             </View>

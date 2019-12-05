@@ -42,8 +42,14 @@ async function import_from_os() {
 }
 
 export const edit_contact = async (_old, _new) => {
-    remove_contact(_old);
-    save_contact(_new);
+    console.log("_old.name")
+    console.log(_old.name)
+    console.log("_new")
+    console.log(_new)
+    await remove_contact(_old.name);
+    await save_contact(_new);
+    const files = await FileSystem.readDirectoryAsync(dir_contacts);
+    console.log(files);
 }
 
 export async function save_contact(contact) {
@@ -81,30 +87,11 @@ export const get_contact = async(name) => {
 
 export async function remove_contact(name) {
     try {
-        await Filesystem.deleteAsync(dir_contacts + name + '.json');
+        await FileSystem.deleteAsync(dir_contacts + name + '.json');
     } catch(e) {
         console.log("Error: Directory/File does not exist " + e);
     }
 }
-
-export async function set_image(contact, select) {
-    const uri  = '';
-    if(select) {
-        uri = await select_from_camera_roll();
-    } else {
-        uri = await take_photo();
-    }
-    console.log(uri);
-
-    if (uri.length > 0) {
-        contact.imageAvailable = true;
-        contact.image.uri = uri;
-    } else {
-        console.log("Error setting image");
-    }
-    await edit_contact(contact, contact)
-}
-
 
 // ------------ v2.0 - DEPRECATED
 // ------------ Contact service using AsyncStorage 

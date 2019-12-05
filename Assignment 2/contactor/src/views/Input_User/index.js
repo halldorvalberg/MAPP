@@ -9,32 +9,54 @@ class Input_User extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            action_type: this.props.navigation.state.params.action_type
-
+            action_type: '',
+            contact_obj: {}
         }
-        // console.log(props)
+
+        console.log(props)
         // console.log(this.props.navigation.state.params.action_type)
     }
-    
+
+    async componentWillMount() {
+        console.log("Im at Input User Will mount")
+        //console.log("COMPONJENT WIL MJPIUTN")
+        const _action_type = this.props.navigation.state.params.action_type
+        //console.log(_action_type)
+        const _contact_name = this.props.navigation.state.params.name
+        //console.log(_contact_name)
+        let _contact_object = {};
+        if (_contact_name != undefined) {
+            _contact_object = await Contact_Service.get_contact(_contact_name + '.json');
+        }
+
+        //console.log("_contact_object")
+        //console.log(_contact_object)
+
+        this.setState({ action_type: _action_type, contact_obj: _contact_object })
+
+
+    }
+
     submit_function = (object) => {
 
-        const action_type = this.state.action_type
 
-        if(action_type === 'UPDATE')
-        {
-            console.log("Im here")
+        const { action_type, contact_obj } = this.state
+
+        if (action_type === 'UPDATE') {
+            Contact_Service.edit_contact(contact_obj, object)
         }
-        else
-        {
-            console.log("Im nost suposed to be here")
+        else {
             Contact_Service.save_contact(object)
         }
     }
     render() {
-        const { contact_obj } = this.props.navigation.state.params
+        const { contact_obj } = this.state
+        const { name } = this.props.navigation.state.params
+        console.log("Im at Input user Rnder")
         return (
+
             <View>
-                <Contact_Input _submit_function={this.submit_function} contact_obj={contact_obj} />
+                <Contact_Input _submit_function={this.submit_function} contact_name={name} />
             </View>
         )
     }

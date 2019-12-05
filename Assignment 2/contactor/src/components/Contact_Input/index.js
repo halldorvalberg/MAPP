@@ -1,7 +1,10 @@
 import React from 'react'
-import {View, TextInput , Button, Text, TouchableHighlight} from 'react-native'
-import {Icon} from 'react-native-elements'
+import { View, TextInput, Button, Text, TouchableHighlight } from 'react-native'
+import { Icon } from 'react-native-elements'
 import styles from '../../style.js'
+
+import { get_contact } from '../../services/Contacts_Service'
+import { select_from_camera_roll, take_photo } from '../../services/Image_Service'
 
 const _state = {
     name: '',
@@ -13,44 +16,62 @@ export default class Contact_Input extends React.Component {
     constructor(props) {
         super(props)
         this.state = _state
-        console.log(this.state)
     }
 
-    componentWillMount() {
+    async componentWillMount() {
         this.setState(_state)
-
-        const obj = this.props.contact_obj
-        // console.log(obj.contact.phoneNumbers[0].number)
-        if (obj.contact.imageAvailable) {
-            this.setState({ name: obj.contact.name, number: obj.contact.phoneNumbers[0].number, image: obj.contact.image.uri })
-        }
-        else {
-            this.setState({ name: obj.contact.name, number: obj.contact.phoneNumbers[0].number, image: '' })
+        if (!(this.props.contact_name === undefined)) {
+            const obj = await get_contact(this.props.contact_name + ".json") 
+            
+            if (obj.imageAvailable) {
+                this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: obj.image.uri })
+            }
+            else {
+                this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: '' })
+            }
         }
     }
 
-    _submit_pressed() {
-        const obj = this.props.contact_obj;
-        if (obj === 'undefined') {
+    async _submit_pressed() {
+        
+        if (this.props.contact_name === undefined) {
+            const obj = {};
             console.log("I am undefined");
-            obj.contact = {};
-            obj.contact.name = this.state.name;
-            obj.contact.imageAvailable = false;
-            obj.contact.phoneNumbers = [{}];
-            obj.contact.phoneNumbers[0].number = this.state.number;
-            obj.contact.phoneNumbers[0].label = 'mobile';
-            obj.contact.phoneNumbers[0].isPrimary = 0;
+            obj.name = this.state.name;
+            obj.imageAvailable = false;
+            obj.phoneNumbers = [{}];
+            obj.phoneNumbers[0].number = this.state.number;
+            obj.phoneNumbers[0].label = 'mobile';
+            obj.phoneNumbers[0].isPrimary = 0;
+            if (this.state.image.length > 0) {
+                if (!obj.imageAvailable) { obj.imageAvailable = true; }
+                obj.image = {};
+                obj.image.uri = this.state.image;
+            }
+            this.props._submit_function(obj);
         } else {
-            obj.contact.name = this.state.name;
-            obj.contact.phoneNumbers[0].number = this.state.number;
+            const obj = await get_contact(this.props.contact_name + ".json");
+            obj.name = this.state.name;
+            obj.phoneNumbers[0].number = this.state.number;
+            if (this.state.image.length > 0) {
+                if (!obj.imageAvailable) { obj.imageAvailable = true; }
+                obj.image = {};
+                obj.image.uri = this.state.image;
+            }
+            this.props._submit_function(obj);
         }
-        if (this.state.image.length > 0) {
-            if (!obj.contact.imageAvailable) {obj.contact.imageAvailable = true;}
-            obj.contact.image = {};
-            obj.contact.image.uri = this.state.image;
-        }
+    }
 
-        this.props._submit_function(obj);
+    async set_image(select) {
+        let uri = '';
+        if(select) {
+            uri = await select_from_camera_roll();
+        } else {
+            uri = await take_photo();
+        }
+        if (uri.length > 0) {
+            this.setState({ image: uri });
+        }
     }
 
     /**
@@ -83,10 +104,20 @@ export default class Contact_Input extends React.Component {
                             value={number}
                         />
                     </View>
+<<<<<<< HEAD
                     <View style={{flex1, flexDirection:'row', justifyContent:'space-around'}}>
+=======
+                    <View>
+>>>>>>> 1a0016f54c264c7f36f99809e84f57679d16b67f
                         <TouchableHighlight>
-                            <Icon reverse name='device-camera' type='octicon' />
+                            <Icon raised name='md-image' type='ionicon' onPress={() => this.set_image(true)}/>
                         </TouchableHighlight>
+<<<<<<< HEAD
+=======
+                        <TouchableHighlight>
+                            <Icon raised name='md-camera' type='ionicon' onPress={() => this.set_image(false)}/>
+                        </TouchableHighlight>
+>>>>>>> 1a0016f54c264c7f36f99809e84f57679d16b67f
                     </View>
                     <View>
                         {/* IMPLEMENT ME!! */}
