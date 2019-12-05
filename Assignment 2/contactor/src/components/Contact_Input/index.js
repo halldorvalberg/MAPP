@@ -5,6 +5,7 @@ import styles from '../../style.js'
 
 import { get_contact } from '../../services/Contacts_Service'
 import { select_from_camera_roll, take_photo } from '../../services/Image_Service'
+import { withNavigation } from 'react-navigation'
 
 const _state = {
     name: '',
@@ -12,7 +13,7 @@ const _state = {
     image: ''
 }
 
-export default class Contact_Input extends React.Component {
+class Contact_Input extends React.Component {
     constructor(props) {
         super(props)
         this.state = _state
@@ -21,8 +22,8 @@ export default class Contact_Input extends React.Component {
     async componentWillMount() {
         this.setState(_state)
         if (!(this.props.contact_name === undefined)) {
-            const obj = await get_contact(this.props.contact_name + ".json") 
-            
+            const obj = await get_contact(this.props.contact_name + ".json")
+
             if (obj.imageAvailable) {
                 this.setState({ name: obj.name, number: obj.phoneNumbers[0].number, image: obj.image.uri })
             }
@@ -33,10 +34,9 @@ export default class Contact_Input extends React.Component {
     }
 
     async _submit_pressed() {
-        
+
         if (this.props.contact_name === undefined) {
             const obj = {};
-            console.log("I am undefined");
             obj.name = this.state.name;
             obj.imageAvailable = false;
             obj.phoneNumbers = [{}];
@@ -60,11 +60,12 @@ export default class Contact_Input extends React.Component {
             }
             this.props._submit_function(obj);
         }
+        console.log('I got here')
     }
 
     async set_image(select) {
         let uri = '';
-        if(select) {
+        if (select) {
             uri = await select_from_camera_roll();
         } else {
             uri = await take_photo();
@@ -81,11 +82,25 @@ export default class Contact_Input extends React.Component {
 
     render() {
         const { name, number, image } = this.state
+        const { navigate } = this.props.navigation
         return (
             <View style={styles.container}>
-                <View style={styles.contact_list_header}>
-                    <Text style={{ fontSize: 40, fontWeight: 'bold' }}>EDIT CONTACT</Text>
-                </View>
+
+                {
+
+                    this.props.action_type == 'UPDATE'
+                        ?
+
+                        <View style={styles.contact_list_header}>
+                            <Text style={{ fontSize: 40, fontWeight: 'bold' }}>EDIT CONTACT</Text>
+                        </View>
+                        :
+                        <View style={styles.contact_list_header}>
+                            <Text style={{ fontSize: 40, fontWeight: 'bold' }}>CREATE CONTACT</Text>
+                        </View>
+
+                }
+
                 <View style={styles.edit_contact_form}>
                     {/* Import Name */}
                     <Text>Name:</Text>
@@ -104,12 +119,12 @@ export default class Contact_Input extends React.Component {
                             value={number}
                         />
                     </View>
-                    <View style={{flex:1, flexDirection:'row', justifyContent:'space-around'}}>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
                         <TouchableHighlight>
-                            <Icon raised name='md-image' type='ionicon' onPress={() => this.set_image(true)}/>
+                            <Icon raised name='md-image' type='ionicon' onPress={() => this.set_image(true)} />
                         </TouchableHighlight>
                         <TouchableHighlight>
-                            <Icon raised name='md-camera' type='ionicon' onPress={() => this.set_image(false)}/>
+                            <Icon raised name='md-camera' type='ionicon' onPress={() => this.set_image(false)} />
                         </TouchableHighlight>
                     </View>
                 </View>
@@ -119,10 +134,12 @@ export default class Contact_Input extends React.Component {
                         title={
                             'Submit'
                         }
-                        onPress={() => { this._submit_pressed() }}
+                        onPress={() => { this._submit_pressed(), console.log(this.state.name), this.props.navigation.reset([NavigationActions.navigate('Contact_Detail', { name: this.state.name })], 0); }}
                     />
                 </View>
             </View>
         )
     }
 }
+
+export default withNavigation(Contact_Input)

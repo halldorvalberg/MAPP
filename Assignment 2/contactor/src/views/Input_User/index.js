@@ -56,7 +56,7 @@ class Input_User extends React.Component {
         return (
 
             <View>
-                <Contact_Input _submit_function={this.submit_function} contact_name={name} />
+                <Contact_Input _submit_function={this.submit_function} contact_name={name} action_type={this.state.action_type} />
             </View>
         )
     }

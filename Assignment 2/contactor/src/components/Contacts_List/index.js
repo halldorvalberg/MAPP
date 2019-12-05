@@ -16,11 +16,16 @@ class Contacts_List extends React.Component {
         super(props)
 
         this.state = {
+            count: 0,
             loading_data: false,
             my_contacts: [],
             unfiltered_contacts: [],
             search_input: ''
         }
+
+        this.t = setInterval(() => {
+            this.setState({ count: this.state.count + 1 });
+        }, 1000);
     }
 
     componentWillMount = async () => {
@@ -29,6 +34,18 @@ class Contacts_List extends React.Component {
         this.setState({ my_contacts: contacts, unfiltered_contacts: contacts, loading_data: false })
 
     };
+
+    componentDidMount() {
+        const { navigation } = this.props;
+        this.focusListener = navigation.addListener('didFocus', () => {
+            this.setState({ count: 0 });
+        });
+    }
+
+    componentWillUnmount() {
+        this.focusListener.remove();
+        clearTimeout(this.t);
+    }
 
     filterList = text => {
         const loading = this.state.loading_data

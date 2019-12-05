@@ -9,8 +9,14 @@ class Contact_Detail extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            count: 0,
             contact: {}
         }
+        this.t = setInterval(() => {
+            this.setState({ count: this.state.count + 1 });
+          }, 1000);
+
+          console.log(props)
         
     }
 
@@ -18,6 +24,17 @@ class Contact_Detail extends React.Component {
         const _contact = await get_contact(this.props.navigation.state.params.name + ".json")
         this.setState({contact: _contact})
         console.log(_contact)
+    }
+
+    componentDidMount() {
+        const {navigation} = this.props
+
+        this.focusListener = navigation.addListener('didFocus', () => {this.setState({count:0});});
+    }
+
+    componentWillUnmount() {
+        this.focusListener.remove();
+        clearTimeout(this.t)
     }
 
     render() {
