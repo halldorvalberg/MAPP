@@ -11,19 +11,11 @@ class Contact_Detail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            count: 0,
             contact: {}
-
         };
-        this.t = setTimeout(() => {
-            this.setState({
-                count: this.state.count + 1
-            });
-        }, 5000);
     }
 
     async componentWillMount() {
-        
         const _contact = await get_contact(
             this.props.navigation.state.params.name + ".json"
         );
@@ -32,8 +24,7 @@ class Contact_Detail extends React.Component {
         });
     }
 
-   async componentWillUpdate() {
-
+    async update_state() {
         const _contact = await get_contact(
             this.props.navigation.state.params.name + ".json"
         );
@@ -49,19 +40,13 @@ class Contact_Detail extends React.Component {
         
         const { navigation } = this.props;
         this.focusListener = navigation.addListener("didFocus", () => {
-            updateState();
-            this.setState({
-                count: 0
-            });
+            this.update_state();
         });
     }
 
     componentWillUnmount() {
         this._state_mounted = false;
-        
         this.focusListener.remove();
-        clearInterval(this.t);
-        clearTimeout(this.t);
     }
 
     render() {
