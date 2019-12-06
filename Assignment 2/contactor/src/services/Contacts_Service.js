@@ -45,8 +45,6 @@ async function import_from_os() {
 export const edit_contact = async (_old, _new) => {
     await remove_contact(_old.name);
     await save_contact(_new);
-    const files = await FileSystem.readDirectoryAsync(dir_contacts);
-    // console.log(files);
 }
 
 export async function save_contact(contact) {
