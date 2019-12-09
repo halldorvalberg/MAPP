@@ -86,3 +86,5 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+Assignment 2/contactor/.expo-shared/assets.json
