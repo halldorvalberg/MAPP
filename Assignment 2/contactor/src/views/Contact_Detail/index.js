@@ -6,17 +6,13 @@ import styles from "../../style.js";
 import { get_contact } from "../../services/Contacts_Service";
 
 class Contact_Detail extends React.Component {
+    _state_mounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
-            count: 0,
             contact: {}
         };
-        this.t = setInterval(() => {
-            this.setState({
-                count: this.state.count + 1
-            });
-        }, 1000);
     }
 
     async componentWillMount() {
@@ -28,27 +24,29 @@ class Contact_Detail extends React.Component {
         });
     }
 
-    async componentWillUpdate() {
+    async update_state() {
         const _contact = await get_contact(
             this.props.navigation.state.params.name + ".json"
         );
-        this.setState({
-            contact: _contact
-        });
+        if (this._state_mounted) {
+            this.setState({
+                contact: _contact
+            });
+        }
     }
 
     componentDidMount() {
+        this._state_mounted = true;
+        
         const { navigation } = this.props;
         this.focusListener = navigation.addListener("didFocus", () => {
-            this.setState({
-                count: 0
-            });
+            this.update_state();
         });
     }
 
     componentWillUnmount() {
+        this._state_mounted = false;
         this.focusListener.remove();
-        clearTimeout(this.t);
     }
 
     render() {

@@ -16,7 +16,6 @@ class Contacts_List extends React.Component {
         super(props)
 
         this.state = {
-            count: 0,
             loading_data: false,
             my_contacts: [],
             unfiltered_contacts: [],
@@ -30,19 +29,21 @@ class Contacts_List extends React.Component {
         this.setState({ my_contacts: contacts, unfiltered_contacts: contacts, loading_data: false })
     };
 
-    _refresh = async () => {
-        const loading = this.state.loading_data
-        if (!loading) {
-            console.log("This is running")
-            this.setState({ loading_data: true })
-            const contacts = await Contact_Service.get_all_contacts();
-            this.setState({ my_contacts: contacts, unfiltered_contacts: contacts, loading_data: false })
-        }
-    };
+    componentDidMount() {
+        const { navigation } = this.props;
+        this.focusListener = navigation.addListener("didFocus", () => {
+            this.refresh();
+        });
+    }
+
+    async refresh() {
+        this.setState({ loading_data: true })
+        const contacts = await Contact_Service.get_all_contacts();
+        this.setState({ my_contacts: contacts, unfiltered_contacts: contacts, loading_data: false })
+    }
 
     componentWillUnmount() {
         this.focusListener.remove();
-        clearTimeout(this.t);
     }
 
     filterList = text => {
@@ -81,13 +82,6 @@ class Contacts_List extends React.Component {
                             onChangeText={text => {
                                 this.filterList(text);
                             }}
-                        />
-                    </View>
-
-                    <View>
-                        <Button
-                            title={'Refresh Contacts'}
-                            onPress={() => this._refresh()}
                         />
                     </View>
 
