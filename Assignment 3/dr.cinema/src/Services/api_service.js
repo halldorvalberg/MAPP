@@ -14,23 +14,23 @@ const API = axios.create({
     headers: {'x-access-token': AUTH}
 });
 
-export const all_cinemas = async () => {
+export const get_all_cinemas = async () => {
     return API.get('/theaters').data;
 }
 
-export const cinema = async (id) => {
-    const cinemas = await all_cinemas();
+export const get_cinema = async (id) => {
+    const cinemas = await get_all_cinemas();
     console.log(cinemas);
     console.log(cinemas.filter(c => c.id === id));
     return cinemas.filter(c => c.id === id);
 }
 
 // Private function kannski?
-export const all_movies = async () => {
+export const get_all_movies = async () => {
     return API.get('/movies').data;
 }
 
-export const movies_by_cinema = async (id) => {
+export const get_movies_by_cinema = async (id) => {
     const movies = await get_all_movies();
     // console.log(movies);
     // console.log(movies.filter(x => x.showtimes.cinema.id === id ));
@@ -43,7 +43,7 @@ export const movies_by_cinema = async (id) => {
     return movie;
 }
 
-export const upcoming_movies = async () => {
+export const get_upcoming_movies = async () => {
     return API.get('/upcoming').data;
 }
 
