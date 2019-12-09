@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
+import AppContainer from './src/Routes'
+
 import Provider from 'react-redux'
 import {createStore} from 'redux'
 
