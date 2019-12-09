@@ -1,12 +1,8 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-/*
-    IMPORT THE VIEWS HERE
- */
+import Cinema_Screen from '../View/Cinemas_Screen'
 
-export default createAppContainer(createStackNavigator)({
-    /* 
-        IMPORTED VIEWS ARE REFFERENCEED HERE
-    */
-})
+export default createAppContainer(createStackNavigator({
+    Cinema_Screen
+}));

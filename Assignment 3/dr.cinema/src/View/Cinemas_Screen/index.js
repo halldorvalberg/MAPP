@@ -2,9 +2,7 @@ import React from 'react'
 
 import {View, Text } from 'react-native'
 
-const Cinemas_Screen = () => {
-
-    return(
+const Cinemas_Screen = () => (
         <View>
             <Text> 
                 Welcome to the first screen. 
@@ -16,7 +14,6 @@ const Cinemas_Screen = () => {
                 :D  
             </Text>
         </View>
-    )
-}
+)
 
 export default Cinemas_Screen;
