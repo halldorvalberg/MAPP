@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { View, Text, TouchableHighlight } from 'react-native'
+import styles from '../../style.js'
 
 class Home_Screen extends React.Component {
     constructor(props) {
@@ -9,19 +10,19 @@ class Home_Screen extends React.Component {
     render() {
         const {navigate} = this.props.navigation
         return (
-            <View>
-                <View>
-                    <Text>
-                        This is the Home screen
+            <View style={styles.container}>
+                <View style={styles.header_container}>
+                    <Text style={styles.header}>
+                    ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ )
                     </Text>
                 </View>
                 <TouchableHighlight onPress={() => navigate("Cinema_Screen")}>
-                    <Text>
+                    <Text style={styles.text}>
                         Tap Here to navigate to Cinemas
                     </Text>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => navigate("Upcoming_Movies_Screen")}>
-                    <Text>
+                    <Text style={styles.text}>
                         Tap here to navigate to Upcoming Movies
                     </Text>
                 </TouchableHighlight>
