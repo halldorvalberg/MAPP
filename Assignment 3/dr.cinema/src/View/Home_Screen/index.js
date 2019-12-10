@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import * as AS from '../../Services/api_service.js';
 
 import { View, Text, TouchableHighlight } from 'react-native'
 import styles from '../../style.js'
@@ -6,9 +7,25 @@ import styles from '../../style.js'
 class Home_Screen extends React.Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            cinemas: {},
+            movies: {},
+            upcoming: {}
+        }
     }
+
+    async componentWillMount() {
+        const c = await AS.get_all_cinemas();
+        this.setState({cinemas: c});
+        const m = await AS.get_all_movies();
+        this.setState({movies: m});
+        const u = await AS.get_upcoming_movies();
+        this.setState({upcoming: u});
+    }
+
     render() {
-        const {navigate} = this.props.navigation
+        const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
                 <View style={styles.header_container}>
