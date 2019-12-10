@@ -18,17 +18,19 @@ class Cinema_Detail_Screen extends React.Component {
                     ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ )
                     </Text>
                 </View>
-                <Text style={styles.text}>
-                    This is the Cinema_Detail_Screen
-                </Text>
-                <Text style={styles.text}>
-                    You can't bring your own food to the theater
-                </Text>
-                <TouchableHighlight onPress={() => navigate("Movie_Screen")}>
+                <View style={styles.page_content}>
                     <Text style={styles.text}>
-                        Tap here to go to the movie
+                        This is the Cinema_Detail_Screen
                     </Text>
-                </TouchableHighlight>
+                    <Text style={styles.name}>
+                        Cinema Name
+                    </Text>
+                    <TouchableHighlight onPress={() => navigate("Movie_Screen")}>
+                        <Text style={styles.text}>
+                            Tap here to go to the movie
+                        </Text>
+                    </TouchableHighlight>
+                </View>
             </View>
         )
     }

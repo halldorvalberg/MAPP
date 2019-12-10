@@ -33,16 +33,18 @@ class Home_Screen extends React.Component {
                     ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ )
                     </Text>
                 </View>
-                <TouchableHighlight onPress={() => navigate("Cinema_Screen")}>
-                    <Text style={styles.text}>
-                        Tap Here to navigate to Cinemas
-                    </Text>
-                </TouchableHighlight>
-                <TouchableHighlight onPress={() => navigate("Upcoming_Movies_Screen")}>
-                    <Text style={styles.text}>
-                        Tap here to navigate to Upcoming Movies
-                    </Text>
-                </TouchableHighlight>
+                <View style={styles.page_content}>
+                    <TouchableHighlight onPress={() => navigate("Cinema_Screen")}>
+                        <Text style={styles.text}>
+                            Tap Here to navigate to Cinemas
+                        </Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => navigate("Upcoming_Movies_Screen")}>
+                        <Text style={styles.text}>
+                            Tap here to navigate to Upcoming Movies
+                        </Text>
+                    </TouchableHighlight>
+                </View>
             </View>
         )
     }

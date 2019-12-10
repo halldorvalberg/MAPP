@@ -17,17 +17,19 @@ class Upcoming_Movies_Screen extends React.Component {
                         ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ ) 
                     </Text>
                 </View>
-                <Text style={styles.text}>
-                    This is the Upcoming_Movies_Screen
-                </Text>
-                <TouchableHighlight onPress={() => navigate("Movie_Screen")}>
+                <View style={styles.page_content}>
                     <Text style={styles.text}>
-                        Navigate to Movie_Screen
+                        This is the Upcoming_Movies_Screen
                     </Text>
-                </TouchableHighlight>
-                <Text style={styles.text}>
-                    LOOK AT ALL THOSE CHICKENSES
-                </Text>
+                    <TouchableHighlight onPress={() => navigate("Movie_Screen")}>
+                        <Text style={styles.text}>
+                            Navigate to Movie_Screen
+                        </Text>
+                    </TouchableHighlight>
+                    <Text style={styles.text}>
+                        LOOK AT ALL THOSE CHICKENSES
+                    </Text>
+                </View>
             </View>
         )
     }
