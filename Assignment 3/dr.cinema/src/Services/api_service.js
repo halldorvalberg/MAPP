@@ -1,33 +1,56 @@
-const axios = require('axios');
+const axios = require('axios').default;
 
-const AUTH = axios({
-    method: 'post',
-    url: 'https://api.kvikmyndir.is/authenticate',
-    data: {
-        username: 'mappgods',
-        password: 'siggistormur'
-    }
-}).data;
-
-const API = axios.create({
-    baseURL: 'https://api.kvikmyndir.is',
-    headers: {'x-access-token': AUTH}
-});
-
-export const get_all_cinemas = async () => {
-    return API.get('/theaters').data;
+async function authenticate() {
+    return axios({
+        method: 'post',
+        url: 'http://api.kvikmyndir.is/authenticate/',
+        data: {
+            username: 'mappgods',
+            password: 'siggistormur'
+        }
+    }).then(function(res) {
+        return res.data.token;
+    }).catch(function(e) {
+        console.log(e);
+    });
 }
 
+function create_api(token){
+    const API = axios.create({
+        baseURL: 'http://api.kvikmyndir.is/',
+        headers: {'x-access-token': token}
+    });
+    return API;
+}
+
+export const get_all_cinemas = async () => {
+    const token = await authenticate();
+    const API = create_api(token);
+    return await API.get('/theaters');
+}
+
+export const get_all_movies = async () => {
+    const token = await authenticate();
+    const API = create_api(token);
+
+    return await API.get('/movies');
+}
+
+export const get_upcoming_movies = async () => {
+    const token = await authenticate();
+    const API = create_api(token);
+
+    return await API.get('/upcoming');
+}
+
+
+
+// DEPRECATED ----------------------------------
 export const get_cinema = async (id) => {
     const cinemas = await get_all_cinemas();
     console.log(cinemas);
     console.log(cinemas.filter(c => c.id === id));
     return cinemas.filter(c => c.id === id);
-}
-
-// Private function kannski?
-export const get_all_movies = async () => {
-    return API.get('/movies').data;
 }
 
 export const get_movies_by_cinema = async (id) => {
@@ -42,11 +65,6 @@ export const get_movies_by_cinema = async (id) => {
     console.log(movie);
     return movie;
 }
-
-export const get_upcoming_movies = async () => {
-    return API.get('/upcoming').data;
-}
-
 
 // DEPRECATED (maybe?)
 // import React from 'react';
