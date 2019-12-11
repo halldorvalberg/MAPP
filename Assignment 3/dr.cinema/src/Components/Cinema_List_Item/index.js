@@ -12,10 +12,10 @@ const Cinema_List_Item = ({cinema, navigation: { navigate }}) => {
         >
             <View>
                 <Text style={styles.text}>{cinema.name}</Text>
-                <Text style={styles.text}>{cinema.phone}</Text>
+                <Text style={styles.text}>{cinema.address}</Text>
+                <Text style={styles.text}>{cinema.city}</Text>
                 <Text style={styles.text}>{cinema.website}</Text>
-                <Text style={styles.text}>{cinema.description}</Text>
-                <Text style={styles.text}>{cinema.google_map}</Text>
+
             </View>
         </TouchableOpacity>
         </View>

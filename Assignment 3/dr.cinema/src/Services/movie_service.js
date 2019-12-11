@@ -1,6 +1,4 @@
 export const get_cinema = async (cinemas, id) => {
-    console.log(cinemas);
-    console.log(cinemas.filter(c => c.id === id));
     return cinemas.filter(c => c.id === id);
 }
 
