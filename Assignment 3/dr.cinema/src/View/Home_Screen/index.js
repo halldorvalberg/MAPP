@@ -7,7 +7,6 @@ import styles from '../../style.js'
 class Home_Screen extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
             cinemas: {},
             movies: {},
@@ -15,21 +14,6 @@ class Home_Screen extends React.Component {
             loading_data: false
         }
     }
-
-    async componentWillMount() {
-        this.setState({loading_data: true})
-        const c = await AS.get_all_cinemas();
-        const m = await AS.get_all_movies();
-        const u = await AS.get_upcoming_movies();
-        this.setState({ movies: m, cinemas: c, upcoming: u, loading_data: false });
-
-
-        // Here go the 'Add this to redux state' commands
-
-        console.log(this.state.cinemas)
-    }
-
-
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -39,31 +23,18 @@ class Home_Screen extends React.Component {
                         ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ )
                     </Text>
                 </View>
-
-                {
-                    this.state.loading_data
-                    ? 
-                    <View>
+                <View style={styles.page_content}>
+                    <TouchableHighlight onPress={() => navigate("Cinema_Screen")}>
                         <Text style={styles.text}>
-                            Loading data. Please wait. 
+                            Tap Here to navigate to Cinemas
                         </Text>
-                    </View>    
-                    :
-                    <View style={styles.page_content}>
-                        <TouchableHighlight onPress={() => navigate("Cinema_Screen")}>
-                            <Text style={styles.text}>
-                                Tap Here to navigate to Cinemas
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => navigate("Upcoming_Movies_Screen")}>
+                        <Text style={styles.text}>
+                            Tap here to navigate to Upcoming Movies
                         </Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => navigate("Upcoming_Movies_Screen")}>
-                            <Text style={styles.text}>
-                                Tap here to navigate to Upcoming Movies
-                        </Text>
-                        </TouchableHighlight>
-                    </View>
-
-                }
-
+                    </TouchableHighlight>
+                </View>
             </View>
         )
     }

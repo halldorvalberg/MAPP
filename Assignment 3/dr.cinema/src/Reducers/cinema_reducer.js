@@ -6,7 +6,6 @@ export default (state = _state, action) => {
     const { type, payload } = action;
     switch (type) {
         case constants.GET_CINEMAS: {
-            console.log("HOW?")
             return {..._state, loading_data: true};
         }
         case constants.GET_CINEMAS_SUCCESS: {

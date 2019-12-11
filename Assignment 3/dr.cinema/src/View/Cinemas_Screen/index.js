@@ -5,7 +5,7 @@ import { FlatList } from 'react-native-gesture-handler'
 import styles from '../../style.js'
 import { useSelector, useDispatch } from 'react-redux';
 import Cinema_List_Item from '../../Components/Cinema_List_Item/'
-import { get_all_cinemas } from '../../Actions/'
+import { get_all_cinemas } from '../../Actions/cinema_actions'
 
 const Cinemas_Screen = () => {
     const dispatch = useDispatch()
