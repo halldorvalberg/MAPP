@@ -26,7 +26,9 @@ function create_api(token){
 export const get_all_cinemas = async () => {
     const token = await authenticate();
     const API = create_api(token);
-    return await API.get('/theaters');
+
+    const data = await API.get('/theaters');
+    return data.data
 }
 
 export const get_all_movies = async () => {
@@ -40,7 +42,16 @@ export const get_upcoming_movies = async () => {
     const token = await authenticate();
     const API = create_api(token);
 
-    return await API.get('/upcoming');
+    const raw_data = await API.get('/upcoming').data;
+
+    var return_data = []
+
+    for(item in raw_data) {
+        return_data.push(raw_data[item])
+    }
+
+
+    return return_data
 }
 
 
