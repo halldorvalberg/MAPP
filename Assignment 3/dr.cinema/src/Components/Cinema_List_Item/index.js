@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation';
 const Cinema_List_Item = ({cinema, navigation: { navigate }}) => {
     return (
         <TouchableOpacity
-            onPress={() => navigate('Cinema_Detail', {id: cinema.id})}
+            onPress={() => navigate('Cinema_Detail_Screen', {id: cinema.id})}
         >
             <View>
                 <Text>{cinemas.name}</Text>
