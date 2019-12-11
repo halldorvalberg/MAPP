@@ -27,55 +27,48 @@ export const get_all_cinemas = async () => {
     const token = await authenticate();
     const API = create_api(token);
 
-    const data = await API.get('/theaters');
-    return data.data
+    const cinemas = await API.get('/theaters');
+    return cinemas.data
 }
 
 export const get_all_movies = async () => {
     const token = await authenticate();
     const API = create_api(token);
 
-    return await API.get('/movies');
+    const movies = await API.get('/movies');
+    return movies.data;
 }
 
 export const get_upcoming_movies = async () => {
     const token = await authenticate();
     const API = create_api(token);
 
-    const raw_data = await API.get('/upcoming').data;
-
-    var return_data = []
-
-    for(item in raw_data) {
-        return_data.push(raw_data[item])
-    }
-
-
-    return return_data
+    const upcoming = await API.get('/upcoming');
+    return upcoming.data;
 }
 
 
 
 // DEPRECATED ----------------------------------
-export const get_cinema = async (id) => {
-    const cinemas = await get_all_cinemas();
-    console.log(cinemas);
-    console.log(cinemas.filter(c => c.id === id));
-    return cinemas.filter(c => c.id === id);
-}
+// export const get_cinema = async (id) => {
+//     const cinemas = await get_all_cinemas();
+//     console.log(cinemas);
+//     console.log(cinemas.filter(c => c.id === id));
+//     return cinemas.filter(c => c.id === id);
+// }
 
-export const get_movies_by_cinema = async (id) => {
-    const movies = await get_all_movies();
-    // console.log(movies);
-    // console.log(movies.filter(x => x.showtimes.cinema.id === id ));
-    const movie = movies.filter(m => {
-        return m.showtimes.forEach(c => {
-            return c.id === id;
-        })
-    });
-    console.log(movie);
-    return movie;
-}
+// export const get_movies_by_cinema = async (id) => {
+//     const movies = await get_all_movies();
+//     // console.log(movies);
+//     // console.log(movies.filter(x => x.showtimes.cinema.id === id ));
+//     const movie = movies.filter(m => {
+//         return m.showtimes.forEach(c => {
+//             return c.id === id;
+//         })
+//     });
+//     console.log(movie);
+//     return movie;
+// }
 
 // DEPRECATED (maybe?)
 // import React from 'react';
