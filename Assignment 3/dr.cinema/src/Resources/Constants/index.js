@@ -1,3 +1,8 @@
-export const ADD_CINEMAS = 'ADD_CINEMAS'
+export const GET_CINEMAS = 'GET_CINEMAS'
+export const GET_CINEMAS_SUCCESS = 'GET_CINEMAS_SUCCESS'
+export const GET_CINEMAS_FAIL = 'GET__FAILCINEMAS'
+
+
+
 export const ADD_MOVIES = 'ADD_MOVIES'
 export const ADD_UPCOMING = 'ADD_UPCOMING'

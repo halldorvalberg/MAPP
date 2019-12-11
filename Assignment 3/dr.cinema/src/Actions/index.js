@@ -1,32 +1,29 @@
 import * as constants from '../Resources/Constants'
+import * as AS from '../Services/api_service';
 
-export function set_cinemas(input) {
-    return {
-        type: constants.ADD_CINEMAS,
-        payload: new Promise((resolve, reject ) => {
-            setTimeout(() => {
-                resolve(input);
-            }, 2000)
-        })
+const get_all_cinemas_load= () => ({
+    type: constants.GET_CINEMAS
+});
+
+const get_all_cinemas_success = (load) => ({
+    type: constants.GET_CINEMAS_SUCCESS,
+    payload: {
+        load
     }
+})
+
+const get_all_cinemas_fail = (load) => ({
+    type: constants.GET_CINEMAS_FAIL,
+    payload: load
+})
+
+export const get_all_cinemas = () => async (dispatch) => {
+    dispatch(get_all_cinemas_load());
+    return AS.get_all_cinemas()
+    .then((responce) => {
+        dispatch(get_all_cinemas_success(responce))
+    })
+    .catch((error) => {
+        dispatch(get_all_cinemas_fail(error))
+    })
 }
-
-
-// export const ADD_CINEMAS = (input) => ({
-//     type: constants.ADD_CINEMAS,
-//     payload: {
-//         input
-//     }
-// })
-// export const ADD_MOVIES = (input) => ({
-//     type: constants.ADD_MOVIES,
-//     payload: {
-//         input
-//     }
-// })
-// export const ADD_UPCOMING = (input) => ({
-//     type: constants.ADD_UPCOMING,
-//     payload: {
-//         input
-//     }
-// })

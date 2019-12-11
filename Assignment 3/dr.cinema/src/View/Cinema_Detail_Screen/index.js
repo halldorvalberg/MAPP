@@ -7,6 +7,8 @@ import styles from '../../style.js'
 class Cinema_Detail_Screen extends React.Component {
     constructor(props) {
         super(props)
+
+        console.log(props)
     }
 
     render() {
