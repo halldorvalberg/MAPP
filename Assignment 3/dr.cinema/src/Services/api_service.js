@@ -28,6 +28,9 @@ export const get_all_cinemas = async () => {
     const API = create_api(token);
 
     const cinemas = await API.get('/theaters');
+    Object.keys(cinemas.data[0]).map(key => {
+        console.log(key.trim());
+    });
 
     return cinemas.data.sort((a, b) => (a.name > b.name) ? 1 : -1);
 }
@@ -35,7 +38,7 @@ export const get_all_cinemas = async () => {
 export const get_all_movies = async () => {
     const token = await authenticate();
     const API = create_api(token);
-    
+
     const movies = await API.get('/movies');
     return movies.data;
 }
@@ -45,7 +48,8 @@ export const get_upcoming_movies = async () => {
     const API = create_api(token);
 
     const upcoming = await API.get('/upcoming');
-    return upcoming.data;
+    
+    return upcoming.data.sort((a, b) => (a["release-dateIS"] > b["release-dateIS"]) ? 1 : -1);
 }
 
 
