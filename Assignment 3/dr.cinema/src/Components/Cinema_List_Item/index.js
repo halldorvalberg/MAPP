@@ -1,17 +1,22 @@
 import React from 'react'
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import styles from '../../style'
+
 
 const Cinema_List_Item = ({cinema, navigation: { navigate }}) => {
     return (
-        <TouchableOpacity
-            onPress={() => navigate('Cinema_Detail_Screen', {id: cinema.id})}
+        <View>
+            <TouchableOpacity
+            onPress={() => navigate('Cinema_Detail_Screen', {cinema: cinema})}
         >
             <View>
-                <Text>{cinemas.name}</Text>
-                <Text>{cinemas.website}</Text>
+                <Text style={styles.text}>{cinema.name}</Text>
+                <Text style={styles.text}>{cinema.website}</Text>
+
             </View>
         </TouchableOpacity>
+        </View>
     )
 }
 

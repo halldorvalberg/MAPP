@@ -1,14 +1,14 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 
 import AppContainer from './src/Routes'
 
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk';
 
 import Reducer from './src/Reducers/index'
 
-const store = createStore(Reducer)
+const store = createStore(Reducer, applyMiddleware(thunk))
 
 export default function App() {
     return (

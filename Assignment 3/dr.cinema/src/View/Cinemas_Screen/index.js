@@ -1,43 +1,44 @@
 import React from 'react'
 
 import { View, Text } from 'react-native'
-import { TouchableHighlight, FlatList } from 'react-native-gesture-handler'
+import { FlatList } from 'react-native-gesture-handler'
 import styles from '../../style.js'
+import { useSelector, useDispatch } from 'react-redux';
+import Cinema_List_Item from '../../Components/Cinema_List_Item/'
+import { get_all_cinemas } from '../../Actions/cinema_actions'
 
-import { connect } from 'react-redux'
+const Cinemas_Screen = () => {
+    const dispatch = useDispatch()
+    const cinemas = useSelector((state) => state.cinemas.data);
+    const loading_data = useSelector((state) => state.cinemas.loading_data);
+    React.useEffect(() => {
+        dispatch(get_all_cinemas());
+    }, [dispatch]);
 
-const Cinemas_Screen = ({ cinemas }) => (
-
-    <View style={styles.container}>
-        <View style={styles.header_container}>
-            <Text style={styles.header}>
-                ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ )
+    return (
+        <View style={styles.container}>
+            <View style={styles.header_container}>
+                <Text style={styles.header}>
+                    ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ )
             </Text>
+
+            </View>
+            {
+                loading_data
+                    ?
+                    //Breyta þessum í loading hring?
+                    <Text style={styles.text}>Loading data... please wait...</Text>
+                    :
+                    <View style={styles.page_content}>
+                        <FlatList
+                            data={cinemas}
+                            renderItem={({ item }) => <Cinema_List_Item cinema={item} />}
+                            keyExtractor={(item) => (`${item.id}.${item.name}`)}
+                        />
+                    </View>
+            }
         </View>
-        <View style={styles.navbar}>
-            <TouchableHighlight /*onPress={() => navigate("Cinema_Detail_Screen")}*/ style={{ height: 30 }}>
-                <View style={styles.button}>
-                    <Text>
-                        CINEMA
-                        </Text>
-                </View>
-            </TouchableHighlight>
-        </View>
-        <View style={styles.page_content}>
+    )
+}
 
-            <Text style={styles.text}> Thisss is the Cinemas_Screen. Here all cinemas registered are displayed in a flatlist </Text>
-            <FlatList
-                data={cinemas}
-                renderItem={({ item }) => <Text>{item.name}</Text>}
-            />
-        </View>
-
-    </View>
-)
-
-const mapStateToProps = (state) => ({
-    cinemas: state.cinemas
-})
-
-
-export default connect(mapStateToProps)(Cinemas_Screen);
+export default Cinemas_Screen;

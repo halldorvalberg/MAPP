@@ -7,7 +7,6 @@ import styles from '../../style.js'
 class Home_Screen extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
             cinemas: {},
             movies: {},

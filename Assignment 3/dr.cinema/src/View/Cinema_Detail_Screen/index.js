@@ -1,39 +1,69 @@
 import React from 'react'
 
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Text } from 'react-native'
-import { TouchableHighlight } from 'react-native-gesture-handler'
+import { TouchableHighlight, FlatList } from 'react-native-gesture-handler'
 import styles from '../../style.js'
+import { withNavigation } from 'react-navigation';
 
-class Cinema_Detail_Screen extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+import { get_all_movies } from '../../Actions/movie_actions'
 
-    render() {
-        const {navigate} = this.props.navigation
-        return (
-            <View style={styles.container}>
-                <View style={styles.header_container}>
-                    <Text style={styles.header}>
+import { get_movies_by_cinema } from '../../Services/movie_service'
+
+
+const Cinema_Detail_Screen = ({ navigation }) => {
+
+    const cinema = navigation.state.params.cinema
+
+    const dispatch = useDispatch()
+    const movies = useSelector((state) => state.movies.data);
+    const loading_data = useSelector((state) => state.movies.loading_data);
+    React.useEffect(() => {
+        dispatch(get_all_movies());
+    }, [dispatch]);
+
+    return (
+        <View style={styles.container}>
+
+            <View style={styles.header_container}>
+                <Text style={styles.header}>
                     ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ )
                     </Text>
-                </View>
-                <View style={styles.page_content}>
-                    <Text style={styles.text}>
-                        This is the Cinema_Detail_Screen
-                    </Text>
-                    <Text style={styles.name}>
-                        Cinema Name
-                    </Text>
-                    <TouchableHighlight onPress={() => navigate("Movie_Screen")}>
-                        <Text style={styles.text}>
-                            Tap here to go to the movie
-                        </Text>
-                    </TouchableHighlight>
-                </View>
             </View>
-        )
-    }
+
+            <View style={styles.page_content}>
+                <View>
+                    <Text style={styles.name}>{cinema.name} </Text>
+                    <Text style={styles.text}>{cinema.address}</Text>
+                    <Text style={styles.text}>{cinema.phone}</Text>
+                    <Text style={styles.text}>{cinema.website}</Text>
+                    <Text style={styles.text}>{cinema.description}</Text>
+                    <Text style={styles.text}>{cinema.google_map}</Text>
+                </View>
+
+                {
+                    loading_data
+                        ?
+                        <View>
+                            <Text style={styles.text}>
+                                Loading Data...
+                        </Text>
+                        </View>
+                        :
+                        <View>
+                            <FlatList
+                                data={get_movies_by_cinema(movies, cinema.id)}
+                                renderItem={({ item }) =>
+                                    <Text style={styles.text}>
+                                        {item.title}
+                                    </Text>
+                                }
+                            />
+                        </View>
+                }
+            </View>
+        </View>
+    )
 }
 
-export default Cinema_Detail_Screen;
+export default withNavigation(Cinema_Detail_Screen);
