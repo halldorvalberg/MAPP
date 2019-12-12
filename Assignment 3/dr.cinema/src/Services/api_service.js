@@ -29,14 +29,13 @@ export const get_all_cinemas = async () => {
 
     const cinemas = await API.get('/theaters');
 
-    //RAÐA Í STAFRÓFSRÖÐ HÉR
-
-    return cinemas.data
+    return cinemas.data.sort((a, b) => (a.name > b.name) ? 1 : -1);
 }
 
 export const get_all_movies = async () => {
     const token = await authenticate();
     const API = create_api(token);
+    
     const movies = await API.get('/movies');
     return movies.data;
 }
