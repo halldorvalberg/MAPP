@@ -1,14 +1,16 @@
 import React from 'react'
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, ActivityIndicator } from 'react-native'
-import { TouchableHighlight, FlatList } from 'react-native-gesture-handler'
+import { FlatList, ScrollView } from 'react-native-gesture-handler'
+
 import styles from '../../style.js'
 import { withNavigation } from 'react-navigation';
-import GoogleMapReact from 'google-map-react';
 import { get_all_movies } from '../../Actions/movie_actions'
 
 import { get_movies_by_cinema } from '../../Services/movie_service'
+
+import Movie_Thumbnail from '../../Components/Movie_Thumbnail'
 
 
 const Cinema_Detail_Screen = ({ navigation }) => {
@@ -22,18 +24,17 @@ const Cinema_Detail_Screen = ({ navigation }) => {
         dispatch(get_all_movies());
     }, [dispatch]);
 
+
     return (
         <View style={styles.container}>
 
             <View style={styles.header_container}>
                 <Text style={styles.header}>
                     ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ )
-                    </Text>
+                        </Text>
             </View>
 
             <View style={styles.page_content}>
-
-
                 {
                     loading_data
                         ?
@@ -42,23 +43,22 @@ const Cinema_Detail_Screen = ({ navigation }) => {
                         </View>
                         :
                         <View>
-                            <View>
-                                <Text style={styles.name}>{cinema.name} </Text>
-                                <Text style={styles.text}>{cinema.description}</Text>
-                                <View style={styles.details}>
-                                <Text style={styles.text}>{cinema.address    }6969 PLACEHOLDER STREET</Text>
-                                    <Text style={styles.text}>{cinema.phone}</Text>
-                                    <Text style={styles.text}>{cinema.website}</Text>
-                                </View>
+                            <Text style={styles.name}>{cinema.name} </Text>
+                            <Text style={styles.text}>{cinema.description}</Text>
+                            <View style={styles.details}>
+                                <Text style={styles.text}>{cinema.address}</Text>
+                                <Text style={styles.text}>{cinema.phone}</Text>
+                                <Text style={styles.text}>{cinema.website}</Text>
                             </View>
-                            <FlatList
-                                data={get_movies_by_cinema(movies, cinema.id)}
-                                renderItem={({ item }) =>
-                                    <Text style={styles.text}>
-                                        {item.title}
-                                    </Text>
-                                }
-                            />
+
+                            <ScrollView>
+                                <FlatList
+                                    data={get_movies_by_cinema(movies, cinema.id)}
+                                    renderItem={({ item }) => <Movie_Thumbnail movie={item} cinema={cinema.id} />}
+                                    keyExtractor={(item) => (`${item.id}.${item.title}`)}
+
+                                />
+                            </ScrollView>
                         </View>
                 }
             </View>

@@ -3,28 +3,18 @@ export const get_cinema = async (cinemas, id) => {
 }
 
 export const get_movies_by_cinema = (movies, id) => {
-
-    // console.log(movies.filter(x => x.showtimes.cinema.id === id ));
-
     var arr = [];
     movies.filter(m => {
-        // console.log(m);
         return m.showtimes.forEach(c => {
             if (c.cinema.id == id) {
-                arr.push(c);
+                arr.push(m);
             }
             return c.cinema.id == id;
         })
     });
-    console.log("MOVIE ------ ARRAY");
-    console.log(arr);
-    return movie;
+    return arr;
 }
 
-export const get_showtimes_by_movie = async (movie, id) => {
-    return movie.showtimes.forEach(c => {
-        return c.id === id;
-    });
-
-    return movie.filter(m => m.showtimes.cinema.id === id); // ? maybe ?
+export const get_showtimes_by_movie = (movie, id) => {
+    return movie.showtimes.filter(x => x.cinema.id == id)
 }
