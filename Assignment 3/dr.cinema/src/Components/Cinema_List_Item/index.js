@@ -13,7 +13,6 @@ const Cinema_List_Item = ({cinema, navigation: { navigate }}) => {
             <View style={styles.list_item}>
                 <Text style={styles.list_item_name}>{cinema.name}</Text>
                 <Text style={styles.list_item_info}>{cinema.website}</Text>
-
             </View>
         </TouchableOpacity>
         </View>

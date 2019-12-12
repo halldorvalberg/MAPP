@@ -19,7 +19,7 @@ const _get_all_upcoming_fail = (error) => ({
 
 export const get_all_upcoming = () => async (dispatch) => {
     dispatch(_get_all_upcoming());
-    return AS.get_all_upcoming()
+    return AS.get_upcoming_movies()
         .then((response) => {
             dispatch(_get_all_upcoming_success(response))
         })
