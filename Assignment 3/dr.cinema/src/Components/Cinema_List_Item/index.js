@@ -10,9 +10,9 @@ const Cinema_List_Item = ({cinema, navigation: { navigate }}) => {
             <TouchableOpacity
             onPress={() => navigate('Cinema_Detail_Screen', {cinema: cinema})}
         >
-            <View>
-                <Text style={styles.text}>{cinema.name}</Text>
-                <Text style={styles.text}>{cinema.website}</Text>
+            <View style={styles.list_item}>
+                <Text style={styles.list_item_name}>{cinema.name}</Text>
+                <Text style={styles.list_item_info}>{cinema.website}</Text>
 
             </View>
         </TouchableOpacity>

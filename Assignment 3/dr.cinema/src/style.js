@@ -35,6 +35,39 @@ const styles = StyleSheet.create({
         margin:'3%',
     },
 
+    list_item:{
+        paddingLeft:10,
+        paddingRight:10,
+        marginBottom:10,
+        height:50,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        backgroundColor:'maroon',
+        alignItems:'center',
+        borderWidth:1,
+        borderColor:'red',
+        borderRadius:5,
+    },
+
+    list_item_image: {
+        height: 50,
+        width: 50,
+        borderTopLeftRadius:5,
+        borderBottomLeftRadius:5,
+        marginRight:10,
+    },
+
+    list_item_name:{
+        color:'white',
+        fontSize:20
+    },
+
+    list_item_info:{
+        color:'#dddddd',
+        fontStyle:'italic',
+    },
+
     button:{
         height:30,
         padding:5,
@@ -54,12 +87,13 @@ const styles = StyleSheet.create({
         marginBottom:20
     },
 
-    movie_details:{
+    details:{
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
         width: '100%',
-        justifyContent:'space-around',
+        justifyContent:'space-evenly',
+        marginTop:30,
     },
 
     movie_img: {
