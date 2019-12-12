@@ -19,7 +19,7 @@ const Movie_Screen = ({ navigation }) => {
                 <Text style={styles.name}> {movie.title} </Text>
                 <View style={{ height: 200 }}>
                     <View style={styles.details}>
-                        <Image style={styles.movie_img} source={movie.poster} />
+                        <Image style={styles.movie_img} source={{uri: movie.poster} } />
                         <Text style={styles.movie_description} numberOfLines={14} ellipsizeMode='tail'> {movie.plot} </Text>
                     </View>
                 </View>

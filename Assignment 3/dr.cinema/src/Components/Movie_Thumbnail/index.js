@@ -10,7 +10,7 @@ const Movie_Thumbnail = ({ cinema, movie, navigation: {navigate} }) => {
         <View>
             <TouchableOpacity onPress={() => navigate('Movie_Screen', {movie: movie, cinema: cinema})}>
                 <View>
-                    <Image source={movie.poster} />
+                    <Image source={{uri: movie.poster}} />
                 </View>
                 <Text>
                     {movie.title}
