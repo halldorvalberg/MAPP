@@ -35,7 +35,7 @@ const Cinemas_Screen = () => {
                             data={cinemas}
                             renderItem={({ item }) => <Cinema_List_Item cinema={item} />}
                             keyExtractor={(item) => (`${item.id}.${item.name}`)}
-                            style={{height:'80%'}}
+                            style={{height:'100%'}}
                         />
                     </View>
             }

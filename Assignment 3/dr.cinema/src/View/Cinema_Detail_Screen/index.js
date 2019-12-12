@@ -46,7 +46,7 @@ const Cinema_Detail_Screen = ({ navigation }) => {
                                 <Text style={styles.name}>{cinema.name} </Text>
                                 <Text style={styles.text}>{cinema.description}</Text>
                                 <View style={styles.details}>
-                                    <Text style={styles.text}>6969 PLACEHOLDER STREET</Text>
+                                <Text style={styles.text}>{cinema.address    }6969 PLACEHOLDER STREET</Text>
                                     <Text style={styles.text}>{cinema.phone}</Text>
                                     <Text style={styles.text}>{cinema.website}</Text>
                                 </View>
