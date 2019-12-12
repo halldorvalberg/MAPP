@@ -24,7 +24,6 @@ const Cinema_Detail_Screen = ({ navigation }) => {
         dispatch(get_all_movies());
     }, [dispatch]);
 
-
     return (
         <View style={styles.container}>
 
@@ -34,7 +33,7 @@ const Cinema_Detail_Screen = ({ navigation }) => {
                         </Text>
             </View>
 
-            <View style={styles.page_content}>
+            <ScrollView style={styles.page_content}>
                 {
                     loading_data
                         ?
@@ -50,18 +49,16 @@ const Cinema_Detail_Screen = ({ navigation }) => {
                                 <Text style={styles.text}>{cinema.phone}</Text>
                                 <Text style={styles.text}>{cinema.website}</Text>
                             </View>
-
-                            <ScrollView>
+                            <View>
                                 <FlatList
                                     data={get_movies_by_cinema(movies, cinema.id)}
                                     renderItem={({ item }) => <Movie_Thumbnail movie={item} cinema={cinema.id} />}
                                     keyExtractor={(item) => (`${item.id}.${item.title}`)}
-
                                 />
-                            </ScrollView>
+                            </View>
                         </View>
                 }
-            </View>
+            </ScrollView>
         </View>
     )
 }

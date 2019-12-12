@@ -43,10 +43,12 @@ const Movie_Screen = ({ navigation }) => {
                 renderItem={({ item }) =>
                     <TouchableOpacity onPress={() => Linking.openURL(item.purchase_url)}>
                         <Text style={styles.text}>
+                        {console.log(item)}
                             {item.time}
                         </Text>
                     </TouchableOpacity>
                 }
+                keyExtractor={(item) => `.${item.purchase_url}`}
             />
         </View>
     )

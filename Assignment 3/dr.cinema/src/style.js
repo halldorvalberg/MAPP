@@ -68,6 +68,12 @@ const styles = StyleSheet.create({
         fontStyle:'italic',
     },
 
+    list_list_item_info:{
+        color:'#dddddd',
+        fontStyle:'italic',
+        fontSize:8
+    },
+
     button:{
         height:30,
         padding:5,
