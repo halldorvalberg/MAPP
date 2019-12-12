@@ -15,7 +15,7 @@ const Movie_Screen = () => (
                     [NAME OF THE MOVIE] II: [CHEESY SEQUEL NAME]
                 </Text>
                 <View style={{height:200}}>
-                    <View style={styles.movie_details}>
+                    <View style={styles.details}>
                         <Image style={styles.movie_img}/>
                         <Text style={styles.movie_description} numberOfLines={14} ellipsizeMode='tail'> 
                             Wat the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills.
@@ -30,7 +30,7 @@ const Movie_Screen = () => (
                         </Text>
                     </View>
                 </View>
-                <View style={styles.movie_details}>
+                <View style={styles.details}>
                     <Text style={styles.text}>
                         Duration: 123 min
                     </Text>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, Text } from 'react-native'
+import { View, Text, ActivityIndicator} from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import styles from '../../style.js'
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,14 +26,16 @@ const Cinemas_Screen = () => {
             {
                 loading_data
                     ?
-                    //Breyta þessum í loading hring?
-                    <Text style={styles.text}>Loading data... please wait...</Text>
+                    <View>
+                        <ActivityIndicator size="large" color="red" style={{ margin: '30%' }} />
+                    </View>
                     :
                     <View style={styles.page_content}>
                         <FlatList
                             data={cinemas}
                             renderItem={({ item }) => <Cinema_List_Item cinema={item} />}
                             keyExtractor={(item) => (`${item.id}.${item.name}`)}
+                            style={{height:'80%'}}
                         />
                     </View>
             }

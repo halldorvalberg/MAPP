@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Text } from 'react-native'
+import { View, Text, ActivityIndicator } from 'react-native'
 import { TouchableHighlight, FlatList } from 'react-native-gesture-handler'
 import styles from '../../style.js'
 import { withNavigation } from 'react-navigation';
-
+import GoogleMapReact from 'google-map-react';
 import { get_all_movies } from '../../Actions/movie_actions'
 
 import { get_movies_by_cinema } from '../../Services/movie_service'
@@ -32,25 +32,25 @@ const Cinema_Detail_Screen = ({ navigation }) => {
             </View>
 
             <View style={styles.page_content}>
-                <View>
-                    <Text style={styles.name}>{cinema.name} </Text>
-                    <Text style={styles.text}>{cinema.address}</Text>
-                    <Text style={styles.text}>{cinema.phone}</Text>
-                    <Text style={styles.text}>{cinema.website}</Text>
-                    <Text style={styles.text}>{cinema.description}</Text>
-                    <Text style={styles.text}>{cinema.google_map}</Text>
-                </View>
+
 
                 {
                     loading_data
                         ?
                         <View>
-                            <Text style={styles.text}>
-                                Loading Data...
-                        </Text>
+                            <ActivityIndicator size="large" color="red" style={{ margin: '30%' }} />
                         </View>
                         :
                         <View>
+                            <View>
+                                <Text style={styles.name}>{cinema.name} </Text>
+                                <Text style={styles.text}>{cinema.description}</Text>
+                                <View style={styles.details}>
+                                    <Text style={styles.text}>6969 PLACEHOLDER STREET</Text>
+                                    <Text style={styles.text}>{cinema.phone}</Text>
+                                    <Text style={styles.text}>{cinema.website}</Text>
+                                </View>
+                            </View>
                             <FlatList
                                 data={get_movies_by_cinema(movies, cinema.id)}
                                 renderItem={({ item }) =>
