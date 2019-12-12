@@ -19,15 +19,31 @@ const styles = StyleSheet.create({
     },
 
     header_container:{
-        marginBottom:10,
         borderBottomWidth:2,
         borderBottomColor:'red',
     },
 
-    page_content:{
+    navbar:{
         width:'100%',
-        height:'100%',
-        margin:'3%'
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent:'space-evenly',
+    },
+
+    page_content:{
+        width:'94%',
+        margin:'3%',
+    },
+
+    button:{
+        height:30,
+        padding:5,
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor:'red',
+        justifyContent:'space-around',
+        borderBottomLeftRadius:5,
+        borderBottomRightRadius:5,
     },
 
     name:{

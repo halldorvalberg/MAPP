@@ -1,7 +1,7 @@
 import React from 'react';
 import * as AS from '../../Services/api_service.js';
 
-import { View, Text, TouchableHighlight } from 'react-native'
+import { View, Text, TouchableHighlight, ActivityIndicator } from 'react-native'
 import styles from '../../style.js'
 
 class Home_Screen extends React.Component {
@@ -17,7 +17,7 @@ class Home_Screen extends React.Component {
     }
 
     async componentWillMount() {
-        this.setState({loading_data: true})
+        this.setState({ loading_data: true })
         const c = await AS.get_all_cinemas();
         const m = await AS.get_all_movies();
         const u = await AS.get_upcoming_movies();
@@ -42,26 +42,27 @@ class Home_Screen extends React.Component {
 
                 {
                     this.state.loading_data
-                    ? 
-                    <View>
-                        <Text style={styles.text}>
-                            Loading data. Please wait. 
-                        </Text>
-                    </View>    
-                    :
-                    <View style={styles.page_content}>
-                        <TouchableHighlight onPress={() => navigate("Cinema_Screen")}>
-                            <Text style={styles.text}>
-                                Tap Here to navigate to Cinemas
-                        </Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight onPress={() => navigate("Upcoming_Movies_Screen")}>
-                            <Text style={styles.text}>
-                                Tap here to navigate to Upcoming Movies
-                        </Text>
-                        </TouchableHighlight>
-                    </View>
-
+                        ?
+                        <View>
+                            <ActivityIndicator size="large" color="red" style={{ margin: '30%' }} />
+                        </View>
+                        :
+                            <View style={styles.navbar}>
+                                <TouchableHighlight onPress={() => navigate("Cinema_Screen")} style={{ height: 30 }}>
+                                    <View style={styles.button}>
+                                        <Text>
+                                            CINEMAS
+                                    </Text>
+                                    </View>
+                                </TouchableHighlight>
+                                <TouchableHighlight onPress={() => navigate("Upcoming_Movies_Screen")} style={{ height: 30 }}>
+                                    <View style={styles.button}>
+                                        <Text>
+                                            MOVIES
+                                    </Text>
+                                    </View>
+                                </TouchableHighlight>
+                            </View>
                 }
 
             </View>
