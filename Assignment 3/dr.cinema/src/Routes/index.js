@@ -6,11 +6,13 @@ import Cinema_Screen from '../View/Cinemas_Screen';
 import Upcoming_Movies_Screen from '../View/Upcoming_Movies_Screen';
 import Cinema_Detail_Screen from '../View/Cinema_Detail_Screen';
 import Movie_Screen from '../View/Movie_Screen';
+import Trailer_Screen from '../View/Trailer_Screen';
 
 export default createAppContainer(createStackNavigator({
     Home_Screen,
     Cinema_Screen,
     Upcoming_Movies_Screen,
     Cinema_Detail_Screen,
-    Movie_Screen
+    Movie_Screen,
+    Trailer_Screen
 }));

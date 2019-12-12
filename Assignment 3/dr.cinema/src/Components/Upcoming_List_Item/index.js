@@ -6,7 +6,7 @@ import styles from '../../style'
 const Upcoming_List_Item = ({upcoming, navigation: { navigate }}) => {
     return (
         <View>
-            <TouchableOpacity onPress={() => navigate('Trailer_Screen', {trailer: upcoming.trailer})}>
+            <TouchableOpacity onPress={() => navigate('Trailer_Screen', {trailers: upcoming.trailers})}>
                 <View style={styles.list_item}>
                     {/* DATA PREVIEW
                         "poster": "https://kvikmyndir.is/images/poster/12432_500.jpg",
