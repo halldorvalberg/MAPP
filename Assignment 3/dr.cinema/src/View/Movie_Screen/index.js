@@ -7,15 +7,8 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import { get_showtimes_by_movie } from '../../Services/movie_service.js'
 
 const Movie_Screen = ({ navigation }) => {
-
-
-
     const { movie, cinema } = navigation.state.params
-
     const showtimes = get_showtimes_by_movie(movie, cinema)
-
-    console.log(showtimes[0].schedule)
-
 
     return (
         <View style={styles.container}>

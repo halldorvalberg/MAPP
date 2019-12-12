@@ -29,6 +29,22 @@ export const get_all_cinemas = async () => {
 
     const cinemas = await API.get('/theaters');
 
+
+
+    var fixed_cinemas = []
+    
+    cinemas.data.forEach(element => {
+        Object.keys(element).map(key => {
+            element[key.trim()] = element[key]
+        })
+    });
+
+    console.log(cinemas.data[0])
+
+    // `Object.keys(cinemas.data[0]).map(key => {
+    //     fixed_cinemas[key.trim()] = cinemas.data[key];
+    // })`
+
     return cinemas.data.sort((a, b) => (a.name > b.name) ? 1 : -1);
 }
 

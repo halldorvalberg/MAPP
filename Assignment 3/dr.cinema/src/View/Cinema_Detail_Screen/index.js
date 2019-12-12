@@ -46,18 +46,18 @@ const Cinema_Detail_Screen = ({ navigation }) => {
                             <Text style={styles.name}>{cinema.name} </Text>
                             <Text style={styles.text}>{cinema.description}</Text>
                             <View style={styles.details}>
-                                <Text style={styles.text}>6969 PLACEHOLDER STREET</Text>
+                                <Text style={styles.text}>{cinema.address}</Text>
                                 <Text style={styles.text}>{cinema.phone}</Text>
                                 <Text style={styles.text}>{cinema.website}</Text>
                             </View>
 
                             <ScrollView>
-                                    <FlatList
-                                        data={get_movies_by_cinema(movies, cinema.id)}
-                                        renderItem={({ item }) => <Movie_Thumbnail movie={item} cinema={cinema.id} />}
-                                        keyExtractor={(item) => (`${item.id}.${item.title}`)}
+                                <FlatList
+                                    data={get_movies_by_cinema(movies, cinema.id)}
+                                    renderItem={({ item }) => <Movie_Thumbnail movie={item} cinema={cinema.id} />}
+                                    keyExtractor={(item) => (`${item.id}.${item.title}`)}
 
-                                    />
+                                />
                             </ScrollView>
                         </View>
                 }
