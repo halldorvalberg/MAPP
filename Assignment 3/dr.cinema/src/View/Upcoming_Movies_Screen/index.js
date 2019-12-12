@@ -21,58 +21,27 @@ const Upcoming_Movies_Screen = () => {
                 <Text style={styles.header}>
                     ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ )
                 </Text>
-
-                {
-                    loading_data
-                        ?
-                        <View>
-                            <ActivityIndicator size="large" color="red" style={{ margin: '30%' }} />
-                        </View>
-                        :
-                        <View style={styles.page_content}>
-                            <FlatList
-                                data={upcoming}
-                                renderItem={({ item }) => <Upcoming_List_Item upcoming={item} />}
-                                keyExtractor={(item) => (`${item.id}.${item.name}`)}
-                                style={{height: '100%'}}
-                            />
-                        </View>
-                }
             </View>
+
+            {
+                loading_data
+                ?
+                <View>
+                    <ActivityIndicator size="large" color="red" style={{ margin: '30%' }} />
+                </View>
+                :
+                <View style={styles.page_content}>
+                    <FlatList
+                        data={upcoming}
+                        renderItem={({ item }) => <Upcoming_List_Item upcoming={item} />}
+                        keyExtractor={(item) => (`${item.id}.${item.name}`)}
+                        style={{height: '100%'}}
+                    />
+                </View>
+            }
         </View>
     )
 
 }
-
-// class Upcoming_Movies_Screen extends React.Component {
-//     constructor(props) {
-//         super(props)
-//     }
-//     render() {
-//         const {navigate} = this.props.navigation
-//         return (
-//             <View style={styles.container}>
-//                 <View style={styles.header_container}>
-//                     <Text style={styles.header}>
-//                         ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ ) 
-//                     </Text>
-//                 </View>
-//                 <View style={styles.page_content}>
-//                     <Text style={styles.text}>
-//                         This is the Upcoming_Movies_Screen
-//                     </Text>
-//                     <TouchableHighlight onPress={() => navigate("Movie_Screen")}>
-//                         <Text style={styles.text}>
-//                             Navigate to Movie_Screen
-//                         </Text>
-//                     </TouchableHighlight>
-//                     <Text style={styles.text}>
-//                         LOOK AT ALL THOSE CHICKENSES
-//                     </Text>
-//                 </View>
-//             </View>
-//         )
-//     }
-// }
 
 export default Upcoming_Movies_Screen;

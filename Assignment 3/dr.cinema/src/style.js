@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
         marginLeft:'auto',
         marginRight:'auto',
         width:'auto',
-
     },
 
     header_container:{
