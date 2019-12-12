@@ -8,33 +8,15 @@ const Cinema_List_Item = ({cinema, navigation: { navigate }}) => {
     return (
         <View>
             <TouchableOpacity
-            onPress={() => navigate('Cinema_Detail_Screen', {id: cinema.id})}
+            onPress={() => navigate('Cinema_Detail_Screen', {cinema: cinema})}
         >
             <View>
                 <Text style={styles.text}>{cinema.name}</Text>
-                <Text style={styles.text}>{cinema.address}</Text>
-                <Text style={styles.text}>{cinema.city}</Text>
                 <Text style={styles.text}>{cinema.website}</Text>
 
             </View>
         </TouchableOpacity>
         </View>
-
-        /* 
-            í cinema er að finna 
-                address
-                city
-                description
-                name
-                phone
-                website
-                google_map
-                
-                í cinema.
-                
-        */
-
-
     )
 }
 

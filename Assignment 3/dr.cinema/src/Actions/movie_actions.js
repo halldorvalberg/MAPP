@@ -6,12 +6,14 @@ const _get_all_movies = () => ({
 })
 
 const _get_all_movies_success = (load) => ({
-    type: constants.GET_CINEMAS_SUCCESS,
-    payload: load
+    type: constants.GET_MOVIES_SUCCESS,
+    payload: {
+        load
+    }
 })
 
 const _get_all_movies_fail = (error) => ({
-    type: constants.GET_CINEMAS_FAIL,
+    type: constants.GET_MOVIES_FAIL,
     payload: error
 });
 

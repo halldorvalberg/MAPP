@@ -3,7 +3,8 @@ export const get_cinema = async (cinemas, id) => {
 }
 
 export const get_movies_by_cinema = async (movies, id) => {
-    // console.log(movies);
+    console.log(id)
+    console.log(movies[0])
     // console.log(movies.filter(x => x.showtimes.cinema.id === id ));
     const movie = movies.filter(m => {
         return m.showtimes.forEach(c => {

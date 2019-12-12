@@ -2,26 +2,25 @@ import React from 'react'
 
 import { useSelector, useDispatch } from 'react-redux';
 import { View, Text } from 'react-native'
-import { TouchableHighlight } from 'react-native-gesture-handler'
+import { TouchableHighlight, FlatList } from 'react-native-gesture-handler'
 import styles from '../../style.js'
 import { withNavigation } from 'react-navigation';
 
-import { get_all_cinemas } from '../../Actions/cinema_actions'
+import { get_all_movies } from '../../Actions/movie_actions'
+
+import { get_movies_by_cinema } from '../../Services/movie_service'
 
 
 const Cinema_Detail_Screen = ({ navigation }) => {
 
-    const dispatch = useDispatch()
-    const cinemas = useSelector((state) => state.cinemas.data);
-    const loading_data = useSelector((state) => state.cinemas.loading_data);
-    React.useEffect(() => {
-        dispatch(get_all_cinemas());
-    }, [dispatch]);
+    const cinema = navigation.state.params.cinema
 
-    const _cinema_id = navigation.state.params.id
-    const _cinema = cinemas.filter(x => x.id == _cinema_id)
-    
-    const { navigate } = navigation
+    const dispatch = useDispatch()
+    const movies = useSelector((state) => state.movies.data);
+    const loading_data = useSelector((state) => state.movies.loading_data);
+    React.useEffect(() => {
+        dispatch(get_all_movies());
+    }, [dispatch]);
 
     return (
         <View style={styles.container}>
@@ -32,30 +31,37 @@ const Cinema_Detail_Screen = ({ navigation }) => {
                     </Text>
             </View>
 
-            {
-                loading_data
-                    ?
-                    <View>
-                        <Text style={styles.text}>Loading Data...</Text>
-                    </View>
-                    :
-                    <View style={styles.page_content}>
-                        <Text style={styles.name}>{_cinema[0].name} </Text>
-                        <Text style={styles.text}>{_cinema[0].address}</Text>
-                        <Text style={styles.text}>{_cinema[0].phone}</Text>
-                        <Text style={styles.text}>{_cinema[0].website}</Text>
-                        <Text style={styles.text}>{_cinema[0].description}</Text>
-                        <Text style={styles.text}>{_cinema[0].google_map}</Text>
-                        <TouchableHighlight>
+            <View style={styles.page_content}>
+                <View>
+                    <Text style={styles.name}>{cinema.name} </Text>
+                    <Text style={styles.text}>{cinema.address}</Text>
+                    <Text style={styles.text}>{cinema.phone}</Text>
+                    <Text style={styles.text}>{cinema.website}</Text>
+                    <Text style={styles.text}>{cinema.description}</Text>
+                    <Text style={styles.text}>{cinema.google_map}</Text>
+                </View>
+
+                {
+                    loading_data
+                        ?
+                        <View>
                             <Text style={styles.text}>
-                                Tap here to go to the movie
+                                Loading Data...
                         </Text>
-                        </TouchableHighlight>
-                    </View>
-            }
-
-
-
+                        </View>
+                        :
+                        <View>
+                            <FlatList
+                                data={get_movies_by_cinema(movies, cinema.id)}
+                                renderItem={({ item }) =>
+                                    <Text style={styles.text}>
+                                        {item.title}
+                                    </Text>
+                                }
+                            />
+                        </View>
+                }
+            </View>
         </View>
     )
 }
