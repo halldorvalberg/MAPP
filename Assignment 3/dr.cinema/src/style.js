@@ -29,13 +29,19 @@ const styles = StyleSheet.create({
         justifyContent:'space-evenly',
     },
 
+    screenings:{
+        margin:'3%',
+        height:'30%',
+        marginTop:'15%',
+    },
+
     page_content:{
         width:'94%',
         margin:'3%',
     },
 
     list_item:{
-        paddingLeft:10,
+        marginLeft:10,
         paddingRight:10,
         marginBottom:10,
         height:50,
@@ -50,8 +56,8 @@ const styles = StyleSheet.create({
     },
 
     list_item_image: {
-        height: 50,
-        width: 50,
+        height: 48,
+        width: 48,
         borderTopLeftRadius:5,
         borderBottomLeftRadius:5,
         marginRight:10,
@@ -59,7 +65,9 @@ const styles = StyleSheet.create({
 
     list_item_name:{
         color:'white',
-        fontSize:20
+        fontSize:15,
+        width:'65%',
+        paddingLeft:10
     },
 
     list_item_info:{
@@ -67,10 +75,17 @@ const styles = StyleSheet.create({
         fontStyle:'italic',
     },
 
-    list_list_item_info:{
+    list_item_genres:{
         color:'#dddddd',
         fontStyle:'italic',
-        fontSize:8
+        fontSize:8,
+        marginLeft:10,
+        marginLeft:10,
+    },
+
+    trailer:{
+        width:'80%',
+        height:'30%',
     },
 
     button:{
@@ -99,6 +114,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent:'space-evenly',
         marginTop:30,
+        marginBottom:30,
     },
 
     movie_img: {

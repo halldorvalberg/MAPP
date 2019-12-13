@@ -17,39 +17,41 @@ const Movie_Screen = ({ navigation }) => {
             </View>
             <View style={styles.page_content}>
                 <Text style={styles.name}> {movie.title} </Text>
-                <View style={{ height: 200 }}>
+                <View style={{ height: 250 }}>
                     <View style={styles.details}>
                         <Image style={styles.movie_img} source={{uri: movie.poster} } />
                         <Text style={styles.movie_description} numberOfLines={14} ellipsizeMode='tail'> {movie.plot} </Text>
                     </View>
                 </View>
-                <View>
-                    <Text style={styles.text}> Duration in Minutes: {movie.durationMinutes} </Text>
-                    <Text style={styles.text}> Release year: {movie.year} </Text>
+                <View style={styles.details}>
+                    <Text style={styles.text}> Length: {movie.durationMinutes} min. </Text>
+                    <Text style={styles.text}> Released: {movie.year} </Text>
                     <Text style={styles.text}> Genres: </Text>
                     <FlatList
                         data={movie.genres}
                         renderItem={({ item }) => <Text style={styles.text}>{item.Name}</Text>}
                         keyExtractor={(item) => `.${item.ID}`}
+                        horizontal='true'
                     />
-
                 </View>
-
-
             </View>
-            <Text style={styles.text}>Select Screening</Text>
-            <FlatList
-                data={showtimes[0].schedule}
-                renderItem={({ item }) =>
-                    <TouchableOpacity onPress={() => Linking.openURL(item.purchase_url)}>
-                        <Text style={styles.text}>
-                        {console.log(item)}
-                            {item.time}
-                        </Text>
-                    </TouchableOpacity>
-                }
-                keyExtractor={(item) => `.${item.purchase_url}`}
-            />
+            <View style={styles.screenings}>
+                <Text style={{fontSize:20, color:'white', marginBottom:20}}>Select Screening</Text>
+                <FlatList
+                    data={showtimes[0].schedule}
+                    renderItem={({ item }) =>
+                        <TouchableOpacity onPress={() => Linking.openURL(item.purchase_url)}>
+                            <View style={styles.list_item}>
+                                <Text style={styles.list_item_name}>
+                                {console.log(item)}
+                                    {item.time}
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    }
+                    keyExtractor={(item) => `.${item.purchase_url}`}
+                />
+            </View>
         </View>
     )
 }

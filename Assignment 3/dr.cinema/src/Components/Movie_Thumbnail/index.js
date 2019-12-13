@@ -22,7 +22,7 @@ const Movie_Thumbnail = ({ cinema, movie, navigation: {navigate} }) => {
                 
                 <FlatList
                     data={movie.genres}
-                    renderItem={({ item }) => <Text style={styles.list_list_item_info}>{item.Name}</Text>}
+                    renderItem={({ item }) => <Text style={styles.list_item_genres}>{item.Name}</Text>}
                     keyExtractor={(item) => `.${item.ID}`}
                 />
                 </View>
