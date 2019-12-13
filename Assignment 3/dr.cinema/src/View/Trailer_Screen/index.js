@@ -7,8 +7,8 @@ import styles from '../../style';
 
 const Trailer_Screen = ({ navigation }) => {
     const trailers = navigation.state.params.trailers;
-    console.log(trailers);
-    if (trailers[0] != undefined) {
+    console.log("Trailers: ", trailers);
+    if (trailers[0] != undefined && trailers[0].results[0] != undefined) {
         const key = trailers[0].results[0].key;
         console.log(`https://www.youtube.com/embed/${key}`);
         return (
