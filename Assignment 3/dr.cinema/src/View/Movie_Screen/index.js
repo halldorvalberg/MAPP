@@ -11,7 +11,7 @@ const Movie_Screen = ({ navigation }) => {
     const showtimes = get_showtimes_by_movie(movie, cinema)
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={styles.header_container}>
                 <Text style={styles.header}> ( •̀෴•́ ) DR. CINEMA ( •̀෴•́ ) </Text>
             </View>
@@ -52,7 +52,7 @@ const Movie_Screen = ({ navigation }) => {
                     keyExtractor={(item) => `.${item.purchase_url}`}
                 />
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
