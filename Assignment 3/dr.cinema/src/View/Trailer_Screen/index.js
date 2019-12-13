@@ -13,12 +13,16 @@ const Trailer_Screen = ({ navigation }) => {
         console.log(`https://www.youtube.com/embed/${key}`);
         return (
             <View style={styles.container}>
-                <WebView
-                    style={{ marginTop: 20, width: '100%'}}
-                    javaScriptEnabled={true}
-                    domStorageEnabled={true}
-                    source={{ uri: `https://www.youtube.com/embed/${key}` }}
-                />
+                <View style={styles.details}>
+                    <View style={styles.trailer}>
+                        <WebView
+
+                            javaScriptEnabled={true}
+                            domStorageEnabled={true}
+                            source={{ uri: `https://www.youtube.com/embed/${key}` }}
+                        />
+                    </View>
+                </View>
             </View>
         )
     }
